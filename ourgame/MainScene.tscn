@@ -15,6 +15,10 @@ cache/0/32/0/scale = 1.0
 [sub_resource type="Theme" id="Theme_m1exf"]
 default_font = SubResource("FontFile_yrj0c")
 default_font_size = 32
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.521569)
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 2
+Label/constants/shadow_offset_y = 2
 
 [node name="MainScene" type="Node2D"]
 
@@ -29,8 +33,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_m1exf")
 
-[node name="Label" type="Label" parent="CanvasLayer/UI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Wave"
+[node name="WaveLabel" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 259.0
+offset_bottom = 44.0
+text = "Wave: %d/%d"
