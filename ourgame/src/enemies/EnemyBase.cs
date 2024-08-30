@@ -23,6 +23,7 @@ public partial class EnemyBase : Node
 	{
 		RecalculateFollow();
 		MoveTowardsTarget();
+		//AttackPlayer(); maybe? for attack animations
 	}
 
 
@@ -42,4 +43,5 @@ public partial class EnemyBase : Node
 	{
 
 	}
+	//private void AttackPlayer(){}
 }
