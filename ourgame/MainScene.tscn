@@ -1,4 +1,20 @@
-[gd_scene format=3 uid="uid://c47nhbfu5ykcp"]
+[gd_scene load_steps=3 format=3 uid="uid://c47nhbfu5ykcp"]
+
+[sub_resource type="FontFile" id="FontFile_yrj0c"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+
+[sub_resource type="Theme" id="Theme_m1exf"]
+default_font = SubResource("FontFile_yrj0c")
+default_font_size = 32
 
 [node name="MainScene" type="Node2D"]
 
@@ -11,3 +27,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_m1exf")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Wave"
