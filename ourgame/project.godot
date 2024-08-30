@@ -12,7 +12,11 @@ config_version=5
 
 config/name="OurGame"
 config/features=PackedStringArray("4.3", "Forward Plus")
+<<<<<<< Updated upstream
 config/icon="res://icon.svg"
+=======
+config/icon="res://asssets/icon.svg"
+>>>>>>> Stashed changes
 
 [dotnet]
 
