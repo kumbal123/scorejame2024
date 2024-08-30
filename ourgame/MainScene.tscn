@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c47nhbfu5ykcp"]
+[gd_scene load_steps=4 format=3 uid="uid://c47nhbfu5ykcp"]
+
+[ext_resource type="PackedScene" uid="uid://bs57v323kxwey" path="res://objects/PlayerCharacter.tscn" id="1_2yysc"]
 
 [sub_resource type="FontFile" id="FontFile_yrj0c"]
 cache/0/16/0/ascent = 0.0
@@ -41,3 +43,6 @@ offset_top = 20.0
 offset_right = 259.0
 offset_bottom = 44.0
 text = "Wave: %d/%d"
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_2yysc")]
+position = Vector2(134, 178)
