@@ -11,11 +11,13 @@ public partial class EnemyBase : Node
 
 	// The direction towards which the enemy is moving.
 	private Vector2 CurrentDirection { get; set; } = Vector2.Zero;
+	private CharacterBody2D Player;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-
+		Player = GetTree().Root.GetNode("MainScene").GetNode<CharacterBody2D>("PlayerCharacter");
+		// Vector2 pos = Player.Position;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
