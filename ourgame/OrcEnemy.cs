@@ -13,20 +13,13 @@ public partial class OrcEnemy : EnemyBase
 
 	public override void _Ready()
 	{
-		base._Ready();
+		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	}
 
 	protected override void RecalculateFollow()
 	{
 		Vector2 playerPosition = GetPlayerPosition(); //todo GetPlayerPosition
-		if (Position.DistanceTo(playerPosition) <= DetectionRange)
-		{
-			CurrentDirection = (playerPosition - Position).Normalized();
-		}
-		else
-		{
-			CurrentDirection = Vector2.Zero;
-		}
+		CurrentDirection = (playerPosition - Position).Normalized();
 	}
 
 	protected override void MoveTowardsTarget()
@@ -39,6 +32,7 @@ public partial class OrcEnemy : EnemyBase
 			{
 				// Scale = new Vector2(Mathf.Sign(Velocity.x), 1); flip sprite nejak XD
 			}
+			_animatedSprite.Play("run");
 		}
 		else
 		{
@@ -55,7 +49,7 @@ public partial class OrcEnemy : EnemyBase
 	{
 		if (IsPlayerInRange())
 		{
-			((AnimationPlayer)GetNode("Animations")).Play("attack1");
+			_animatedSprite.Play("attack1");
 		}
 	}
 

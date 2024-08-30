@@ -1,4 +1,10 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=3 format=3 uid="uid://c47nhbfu5ykcp"]
+=======
+[gd_scene load_steps=4 format=3 uid="uid://c47nhbfu5ykcp"]
+
+[ext_resource type="PackedScene" path="res://objects/PlayerCharacter.tscn" id="1_2yysc"]
+>>>>>>> Stashed changes
 
 [sub_resource type="FontFile" id="FontFile_yrj0c"]
 cache/0/16/0/ascent = 0.0

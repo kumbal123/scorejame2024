@@ -10,7 +10,7 @@ public partial class EnemyBase : Node
 	public int Health { get; set; }
 
 	// The direction towards which the enemy is moving.
-	private Vector2 CurrentDirection { get; set; } = Vector2.Zero;
+	protected Vector2 CurrentDirection { get; set; } = Vector2.Zero;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -31,7 +31,7 @@ public partial class EnemyBase : Node
 	/// Recalculate and update angle at which to move towards player
 	/// </summary>
 	// ... maybe only call every x frames to save resources
-	private void RecalculateFollow()
+	protected virtual RecalculateFollow()
 	{
 
 	}
@@ -39,9 +39,9 @@ public partial class EnemyBase : Node
 	/// <summary>
 	/// Move in direction of currentDirection
 	/// </summary>
-	private void MoveTowardsTarget()
+	protected virtual MoveTowardsTarget()
 	{
 
 	}
-	//private void AttackPlayer(){}
+	//protected virtual AttackPlayer(){}
 }
