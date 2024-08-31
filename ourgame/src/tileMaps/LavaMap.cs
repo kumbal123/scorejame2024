@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class LavaMap : TileMapLayer
 {
-    [Export] private float ExpansionInterval = 1.0f;
+    [Export] private float ExpansionInterval = 5.0f;
     [Export] private float Damage = 50;
     [Export] private float DamageInterval = 1.0f;
     [Export] private Vector2I LavaTileId = Vector2I.Zero; // Assuming lava tile is at (0,0) in your atlas
@@ -28,7 +28,7 @@ public partial class LavaMap : TileMapLayer
 
         if (timeSinceLastExpansion >= ExpansionInterval)
         {
-            //ExpandLava();
+            ExpandLava();
             timeSinceLastExpansion = 0.0f;
         }
 
