@@ -11,11 +11,12 @@ public partial class UpgradeTooltip : TextureRect
 	/// Loads the tooltip data from an upgrade.
 	/// </summary>
 	/// <param name="upgrade">The upgrade the tooltip is to display.</param>
-	public void LoadUpgradeData(UpgradeBase upgrade)
+	public void LoadUpgradeData(UpgradeData upgrade)
 	{
 		GetNode<Label>("Title").Text = upgrade.Title;
 		GetNode<TextureRect>("Icon").Texture = upgrade.GetIcon;
-		GetNode<Label>("LevelUpDesc").Text = upgrade.LevelUpInfo();
+		GetNode<Label>("LevelIndicator").Text = $"Level {upgrade.Level} -> {upgrade.Level + 1}";
+		GetNode<Label>("Description").Text = upgrade.LevelUpInfo();
 	}
 
 	/// <summary>

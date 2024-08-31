@@ -26,3 +26,5 @@ sprite_frames = SubResource("SpriteFrames_mebff")
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-2.75, -1)
 shape = SubResource("RectangleShape2D_503mk")
+
+[node name="Upgrades" type="Node2D" parent="."]

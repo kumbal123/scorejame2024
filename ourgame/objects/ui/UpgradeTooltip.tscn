@@ -29,10 +29,16 @@ cache/0/24/0/descent = 0.0
 cache/0/24/0/underline_position = 0.0
 cache/0/24/0/underline_thickness = 0.0
 cache/0/24/0/scale = 1.0
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_c1drp"]
+line_spacing = -8.0
 font = SubResource("FontFile_pfbnp")
-font_size = 24
+font_size = 22
 shadow_color = Color(0, 0, 0, 0.521569)
 
 [sub_resource type="Animation" id="Animation_qvflp"]
@@ -119,41 +125,53 @@ theme = ExtResource("1_4rsfl")
 texture = SubResource("PlaceholderTexture2D_5iah1")
 script = ExtResource("2_huiwa")
 
-[node name="Title" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "Some upgrade"
-horizontal_alignment = 1
-
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_top = 56.0
-offset_right = 20.0
-offset_bottom = 96.0
+offset_left = -195.5
+offset_top = -27.0
+offset_right = -131.5
+offset_bottom = 37.0
 grow_horizontal = 2
+expand_mode = 1
 
-[node name="LevelUpDesc" type="Label" parent="."]
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 44.0
+grow_horizontal = 2
+text = "Some upgrade"
+horizontal_alignment = 1
+
+[node name="LevelIndicator" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 36.0
+offset_bottom = 69.0
+grow_horizontal = 2
+text = "Level 0 -> 1"
+label_settings = SubResource("LabelSettings_c1drp")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
-offset_top = -98.0
+offset_top = -122.0
 offset_right = -16.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Attack 10 -> 20"
+text = "Something about how the effect is upgraded and better wow"
 label_settings = SubResource("LabelSettings_c1drp")
-horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -161,3 +179,18 @@ libraries = {
 "": SubResource("AnimationLibrary_cx80s")
 }
 autoplay = "Appear"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -7.0
+offset_right = 318.0
+offset_bottom = 37.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Press \"Spacebar\" to level up"

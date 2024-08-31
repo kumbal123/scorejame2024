@@ -4,10 +4,19 @@ using System;
 /// <summary>
 /// Base class for all enemies.
 /// </summary>
-public partial class EnemyBase : Node
+public partial class EnemyBase : Node2D
 {
+	[Export]
+	public int Health { get; set; } = 100;
+	[Export]
+	public int Attack { get; set; } = 5;
+	[Export]
+	public int Defense { get; set; } = 0;
+	[Export]
+	public int Speed { get; set; } = 100;
 
-	public int Health { get; set; }
+	[Export]
+	public int KillScoreReward { get; set; } = 100;
 
 	// The direction towards which the enemy is moving.
 	private Vector2 CurrentDirection { get; set; } = Vector2.Zero;
@@ -27,7 +36,6 @@ public partial class EnemyBase : Node
 		MoveTowardsTarget();
 	}
 
-
 	/// <summary>
 	/// Recalculate and update angle at which to move towards player
 	/// </summary>
@@ -43,5 +51,28 @@ public partial class EnemyBase : Node
 	private void MoveTowardsTarget()
 	{
 
+	}
+
+	/// <summary>
+	/// Incurs damage to the enemy. Takes defense into calculation.
+	/// </summary>
+	/// <param name="damage">Damage to take.</param>
+	public void TakeDamage(int damage)
+	{
+		// Add some kind of defense reduction formula...
+		Health -= damage;
+		if (Health < 0)
+			Deaded();
+	}
+
+	/// <summary>
+	/// Called when the enemy is defeated.
+	/// </summary>
+	public void Deaded()
+	{
+		// TODO: reward score.
+		
+		// Cool death animation and also drop stuff?
+		QueueFree();
 	}
 }

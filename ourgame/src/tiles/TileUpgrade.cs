@@ -10,7 +10,7 @@ public partial class TileUpgrade : TileBase
 	/// The upgrade that this tile holds.
 	/// </summary>
 	[Export]
-	public UpgradeBase upgrade;
+	public UpgradeData upgrade;
 	private UpgradeTooltip tooltip;
 
 	/// <summary>
@@ -20,6 +20,7 @@ public partial class TileUpgrade : TileBase
     {
         if (body.IsInGroup("player")) {
 			tooltip = GD.Load<PackedScene>("res://objects/ui/UpgradeTooltip.tscn").Instantiate<UpgradeTooltip>();
+			tooltip.LoadUpgradeData(upgrade);
 			AddChild(tooltip);
 		}	
     }

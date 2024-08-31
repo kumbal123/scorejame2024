@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://df30rk071rwl6"]
+
+[ext_resource type="Script" path="res://src/upgrades/nodeScript/UpgradeNodeGarlic.cs" id="1_qpdeu"]
+[ext_resource type="Resource" uid="uid://bnhacw6i1q8vl" path="res://resources/upgrades/UpgradeGarlic.tres" id="2_b7uij"]
+[ext_resource type="Texture2D" uid="uid://dactiscsk0iix" path="res://imgs/vfx/garlic_placeholder.png" id="2_qu32n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p2rd1"]
+radius = 64.0
+
+[node name="UpgradeGarlic" type="Node2D"]
+script = ExtResource("1_qpdeu")
+Upgrade = ExtResource("2_b7uij")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qu32n")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="DamageHitbox" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_p2rd1")
+
+[node name="DamageTick" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="DamageTick" to="." method="TriggerAttack"]

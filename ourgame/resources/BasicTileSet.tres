@@ -1,7 +1,6 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://7aab2m8bs133"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://7aab2m8bs133"]
 
 [ext_resource type="Texture2D" uid="uid://br3dqj7hbktyi" path="res://imgs/tileset/spritesheet_placeholder.png" id="1_krx66"]
-[ext_resource type="PackedScene" uid="uid://cl8b4vkvkp3jx" path="res://objects/tile/TileUpgrade.tscn" id="2_abvj4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_evh7p"]
 texture = ExtResource("1_krx66")
@@ -9,10 +8,6 @@ texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3qb7g"]
-scenes/1/scene = ExtResource("2_abvj4")
-
 [resource]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_evh7p")
-sources/1 = SubResource("TileSetScenesCollectionSource_3qb7g")

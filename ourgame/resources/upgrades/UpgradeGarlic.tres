@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="UpgradeDataGarlic" load_steps=2 format=3 uid="uid://bnhacw6i1q8vl"]
+
+[ext_resource type="Script" path="res://src/upgrades/dataScript/UpgradeDataGarlic.cs" id="1_l1nqa"]
+
+[resource]
+script = ExtResource("1_l1nqa")

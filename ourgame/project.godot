@@ -22,6 +22,7 @@ project/assembly_name="New Game Project"
 [global_group]
 
 player="The player character"
+enemy="All enemies belong to this group."
 
 [input]
 
