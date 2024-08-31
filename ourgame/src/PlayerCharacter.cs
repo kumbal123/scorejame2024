@@ -11,11 +11,13 @@ public partial class PlayerCharacter : CharacterBody2D
 	// Almost like making the player character node global.
 	public static PlayerCharacter Instance { get; private set; } = null;
 
-	private float Speed { get; set; } = 200;
-    private float Hp { get { return _hp; } set {_hp = value; HpBar.Value = value; } }
-	private float MaxHp { get { return _maxHp; } set {_maxHp = value; HpBar.MaxValue = value; } }
+	public float Speed { get { return _speed; } set { _speed = value; } }
+    public float Hp { get { return _hp; } set {_hp = value; HpBar.Value = value; } }
+	public float MaxHp { get { return _maxHp; } set {_maxHp = value; HpBar.MaxValue = value; } }
+	public int Damage { get {return _damage; } set { _damage = value; }}
 
-    private float _hp;
+    private float _speed = 200;
+	private float _hp;
 	private float _maxHp;
 	private int _damage = 50;
 	private bool _isAttacking = false;
@@ -68,7 +70,7 @@ public partial class PlayerCharacter : CharacterBody2D
 
         // Normalize the velocity to ensure consistent speed in diagonal movement
         if (Velocity.Length() > 0) {
-            Velocity = Velocity.Normalized() * Speed;
+            Velocity = Velocity.Normalized() * _speed;
 			if (Velocity.X < 0) {
 				AnimSprite.FlipH = true;
 				SlashHitbox.Scale = new Vector2(-1, 1);
