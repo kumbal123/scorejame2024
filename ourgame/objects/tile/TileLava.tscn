@@ -1,23 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cafu2sni8fkg1"]
+[gd_scene load_steps=5 format=3 uid="uid://tocvto22auo2"]
 
+[ext_resource type="PackedScene" uid="uid://caytun7rnljs0" path="res://objects/tile/TileBase.tscn" id="1_l4gv5"]
 [ext_resource type="Texture2D" uid="uid://cj4mxmwht1p2b" path="res://asssets/TileLava.png" id="1_xsssl"]
 [ext_resource type="Script" path="res://src/tiles/TileLava.cs" id="2_16r5p"]
+[ext_resource type="Script" path="res://src/misc/DamagingArea2D.cs" id="4_uryah"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_53gse"]
-size = Vector2(64, 64)
-
-[node name="TileLava" type="Sprite2D"]
+[node name="TileLava" instance=ExtResource("1_l4gv5")]
 texture = ExtResource("1_xsssl")
 script = ExtResource("2_16r5p")
+TickInterval = 1.0
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_53gse")
-
-[node name="DamageTick" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="DamageTick" to="." method="TriggerAttack"]
+[node name="Area2D" parent="." index="0"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("4_uryah")
+Damage = 30

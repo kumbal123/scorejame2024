@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs57v323kxwey"]
+[gd_scene load_steps=10 format=3 uid="uid://bs57v323kxwey"]
 
 [ext_resource type="Script" path="res://src/PlayerCharacter.cs" id="1_1gxcp"]
 [ext_resource type="Texture2D" uid="uid://dnsj8e6srnmoa" path="res://asssets/icon.svg" id="2_pu1ya"]
@@ -15,7 +15,59 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_503mk"]
-size = Vector2(125.5, 124)
+size = Vector2(100, 100)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu64h"]
+bg_color = Color(0, 0, 0, 0.5)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmomj"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Animation" id="Animation_2lp5x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_reeid"]
+resource_name = "TakeDamage"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1.6245, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qsqfa"]
+_data = {
+"RESET": SubResource("Animation_2lp5x"),
+"TakeDamage": SubResource("Animation_reeid")
+}
 
 [node name="PlayerCharacter" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_1gxcp")
@@ -23,8 +75,41 @@ script = ExtResource("1_1gxcp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mebff")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-2.75, -1)
+[node name="CollisionHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_503mk")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="OverlapHitbox" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_503mk")
 
 [node name="Upgrades" type="Node2D" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -66.0
+offset_top = 73.0
+offset_right = 66.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_iu64h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hmomj")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qsqfa")
+}
+
+[node name="DamageTick" type="Timer" parent="."]
+
+[connection signal="timeout" from="DamageTick" to="." method="DamageCheck"]

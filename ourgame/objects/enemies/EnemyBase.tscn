@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3oto5p5fwan4"]
+[gd_scene load_steps=8 format=3 uid="uid://d3oto5p5fwan4"]
 
 [ext_resource type="Script" path="res://src/enemies/EnemyBase.cs" id="1_28oji"]
+[ext_resource type="Script" path="res://src/misc/DamagingArea2D.cs" id="2_mn7jm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ng1uo"]
-size = Vector2(146, 143)
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwqi6"]
+size = Vector2(128, 128)
 
 [sub_resource type="Animation" id="Animation_2lp5x"]
 length = 0.001
@@ -44,18 +48,26 @@ _data = {
 }
 
 [node name="EnemyBase" type="CharacterBody2D" groups=["enemy"]]
-collision_layer = 9
+collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_28oji")
 metadata/_edit_vertical_guides_ = [-838.0]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(2.5, 1)
+[node name="CollisionHitbox" type="CollisionShape2D" parent="." groups=["enemy"]]
 shape = SubResource("RectangleShape2D_ng1uo")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("2_mn7jm")
+
+[node name="OverlapHitbox" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_jwqi6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_qsqfa")
 }
+
+[connection signal="body_entered" from="Area2D" to="." method="BodyEntered"]

@@ -7,40 +7,17 @@ using System;
 public partial class TileLava : TileBase
 {
     private Area2D hitbox;
-    private float Damage { get; set; } = 50;
-    private float TickLength => 1.0f;
 
-    public override void _Ready()
-    {
-        SetProcessUnhandledKeyInput(false);
-        hitbox = GetNode<Area2D>("Area2D");
-        GetNode<Timer>("DamageTick").WaitTime = TickLength;
-    }
+    [Export]
+    private float TickInterval { get; set; } = 1.0f;
 
     /// <summary>
-    /// If body is player, spawn and display tooltip
+    /// If body is player do damage and activate timer to tick damage if continued in lava.
     /// </summary>
     public override void BodyEnteredTile(Node2D body)
     {
-        TriggerAttack();
+        if (body.IsInGroup("player")) {
+            ((PlayerCharacter)body).EnterDamageZone();
+        }
     }
-
-    public override void _UnhandledKeyInput(InputEvent @event)
-    {
-    }
-
-    public override void BodyExitedTile(Node2D body)
-    {
-
-    }
-
-    public void TriggerAttack()
-	{
-		foreach (Node2D body in hitbox.GetOverlappingBodies())
-		{
-			if (body.IsInGroup("player")) {
-                ((PlayerCharacter) body).TakeDamage(Damage);
-            }			
-		}
-	}
 }

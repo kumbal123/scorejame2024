@@ -8,7 +8,7 @@ public partial class UpgradeDataGarlic : UpgradeData
     public override string Title => "Garlic clone";
     public override Texture2D GetIcon => GD.Load<Texture2D>("res://asssets/icon.svg");
 
-    public float TickLength => 2.0f / Speed;
+    public float TickInterval => 2.0f / Speed;
 
     public UpgradeDataGarlic()
     {    

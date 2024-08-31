@@ -16,7 +16,7 @@ public partial class UpgradeNodeGarlic : UpgradeNode
 	public override void UpgradeParametersChanged()
     {
         Scale = Vector2.One * Upgrade.Size;
-        GetNode<Timer>("DamageTick").WaitTime = ((UpgradeDataGarlic)Upgrade).TickLength;
+        GetNode<Timer>("DamageTick").WaitTime = ((UpgradeDataGarlic)Upgrade).TickInterval;
 		// Triggers the attack for free when upgrading
 		TriggerAttack();
     }

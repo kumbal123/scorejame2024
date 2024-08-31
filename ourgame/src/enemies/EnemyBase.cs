@@ -21,7 +21,9 @@ public partial class EnemyBase : CharacterBody2D
 	[Export]
 	public int KillScoreReward { get; set; } = 100;
 
-	private CharacterBody2D Player;
+    public float Damage => Attack;
+
+    private CharacterBody2D Player;
 	private AnimationPlayer anim;
 
 	// The frame, during which enemy updates movement direction.
@@ -33,8 +35,8 @@ public partial class EnemyBase : CharacterBody2D
 	{
 		updateFrame = 1 + GD.Randi() % 60;
 		Player = PlayerCharacter.Instance;
-		// Vector2 pos = Player.Position;
 		anim = GetNode<AnimationPlayer>("AnimationPlayer");
+		GetNode<DamagingArea2D>("Area2D").Damage = Attack;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -66,6 +68,12 @@ public partial class EnemyBase : CharacterBody2D
 	private void MoveTowardsTarget()
 	{
 		MoveAndSlide();
+	}
+
+	private void BodyEntered(Node2D body) {
+		if (body.IsInGroup("player")) {
+			((PlayerCharacter)body).EnterDamageZone();
+		}
 	}
 
 	/// <summary>

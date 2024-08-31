@@ -16,6 +16,7 @@ animations = [{
 
 [node name="EnemyFirst" instance=ExtResource("1_4n8ss")]
 Health = 30
+Attack = 10
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 self_modulate = Color(1.5, 0.8, 0.8, 1)

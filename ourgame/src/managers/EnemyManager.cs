@@ -11,7 +11,7 @@ public partial class EnemyManager : Node
 	/// The set of enemies to spawn.
 	/// The format is { EnemyBase.tscn: amountToSpawn }
 	/// </summary>
-	public Dictionary<String, int> EnemyPool { get; set; } = new()
+	public Dictionary<string, int> EnemyPool { get; set; } = new()
 	{
 		{"res://objects/enemies/basic/EnemyFirst.tscn", 4},
 	};
@@ -32,7 +32,7 @@ public partial class EnemyManager : Node
 
 	public void SpawnTick()
 	{
-		foreach (KeyValuePair<String, int> spawnEntry in EnemyPool)
+		foreach (KeyValuePair<string, int> spawnEntry in EnemyPool)
 		{
 			for (int i=0; i<spawnEntry.Value; i++)
 			{
@@ -50,7 +50,7 @@ public partial class EnemyManager : Node
 	{
 		EnemyBase enemy = GD.Load<PackedScene>(enemyPath).Instantiate<EnemyBase>();
 		// TODO: Random spawning.
-		enemy.Position = Vector2.Zero;
+		enemy.Position = new Vector2(1000,10);
 		AddChild(enemy);
 	}
 
