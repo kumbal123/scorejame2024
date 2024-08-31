@@ -49,15 +49,3 @@ offset_top = 20.0
 offset_right = 259.0
 offset_bottom = 44.0
 text = "Wave: %d/%d"
-<<<<<<< HEAD
-=======
-
-[node name="PlayerCharacter" parent="." instance=ExtResource("1_2yysc")]
-position = Vector2(134, 178)
-
-[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
-
-[node name="EnemyFirst" parent="." instance=ExtResource("6_7t84n")]
-position = Vector2(525, 189)
-Health = 100
->>>>>>> lava
