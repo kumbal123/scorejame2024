@@ -28,7 +28,7 @@ public partial class LavaMap : TileMapLayer
 
         if (timeSinceLastExpansion >= ExpansionInterval)
         {
-            ExpandLava();
+            //ExpandLava();
             timeSinceLastExpansion = 0.0f;
         }
 
