@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://c47nhbfu5ykcp"]
+[gd_scene load_steps=11 format=4 uid="uid://c47nhbfu5ykcp"]
 
 [ext_resource type="PackedScene" uid="uid://bs57v323kxwey" path="res://objects/PlayerCharacter.tscn" id="1_2yysc"]
 [ext_resource type="Script" path="res://OrcScene.cs" id="1_g0oca"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cl8b4vkvkp3jx" path="res://objects/tile/TileUpgrade.tscn" id="4_c7b2p"]
 [ext_resource type="Resource" uid="uid://bnhacw6i1q8vl" path="res://resources/upgrades/UpgradeGarlic.tres" id="5_hdme0"]
 [ext_resource type="PackedScene" uid="uid://dot3fp7gvva3j" path="res://objects/managers/EnemyManager.tscn" id="5_tuci1"]
+[ext_resource type="Resource" uid="uid://b6twdicqhik1v" path="res://resources/upgrades/UpgradePlayer.tres" id="7_sl7mp"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_g0oca")
@@ -22,9 +23,15 @@ tile_map_data = PackedByteArray("AAD6/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAANAAIAAAAAAAA
 tile_set = ExtResource("2_0kwa6")
 script = ExtResource("3_w137l")
 
-[node name="Tiles#Tile" parent="." instance=ExtResource("4_c7b2p")]
+[node name="Tiles" type="Node2D" parent="."]
+
+[node name="Tiles#Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
 position = Vector2(29, 353)
 upgrade = ExtResource("5_hdme0")
+
+[node name="Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
+position = Vector2(550, 250)
+upgrade = ExtResource("7_sl7mp")
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_tuci1")]
 InitialSpawnInterval = 10.0

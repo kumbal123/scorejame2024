@@ -24,6 +24,7 @@ public partial class TileUpgrade : TileBase
 	public override void _UnhandledKeyInput(InputEvent @event)
     {
         if (@event.IsActionReleased("ui_accept")) {
+			GD.Print("Bought Upgrade");
 			upgrade.LevelUp();
 			tooltip.BuyUpgrade(upgrade);
 		}
