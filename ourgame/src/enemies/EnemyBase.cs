@@ -14,6 +14,7 @@ public partial class EnemyBase : CharacterBody2D
 	public int Defense { get; set; } = 0;
 	[Export]
 	public int Speed { get; set; } = 100;
+	protected AnimatedSprite2D animatedSprite = null;
 
 	/// <summary>
 	/// Score reward gained for killing this enemy.
@@ -36,6 +37,7 @@ public partial class EnemyBase : CharacterBody2D
 		updateFrame = 1 + GD.Randi() % 60;
 		Player = PlayerCharacter.Instance;
 		anim = GetNode<AnimationPlayer>("AnimationPlayer");
+		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		GetNode<DamagingArea2D>("Area2D").Damage = Attack;
 	}
 
@@ -67,12 +69,22 @@ public partial class EnemyBase : CharacterBody2D
 	/// </summary>
 	private void MoveTowardsTarget()
 	{
+		if(Velocity.X > 0){
+			animatedSprite.FlipH = false;
+			animatedSprite.Play("walk");
+		}else if(Velocity.X < 0){
+			animatedSprite.FlipH = true;
+			animatedSprite.Play("walk");
+		}else{
+			animatedSprite.Play("idle");
+		}
 		MoveAndSlide();
 	}
 
 	private void BodyEntered(Node2D body) {
 		if (body.IsInGroup("player")) {
 			((PlayerCharacter)body).EnterDamageZone();
+			animatedSprite.Play("attack1");
 		}
 	}
 
@@ -97,6 +109,7 @@ public partial class EnemyBase : CharacterBody2D
 		// TODO: reward score.
 
 		// Cool death animation and also drop stuff?
+		animatedSprite.Play("death");
 		QueueFree();
 	}
 }
