@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://c47nhbfu5ykcp"]
+[gd_scene load_steps=9 format=4 uid="uid://c47nhbfu5ykcp"]
 
 [ext_resource type="PackedScene" uid="uid://bs57v323kxwey" path="res://objects/PlayerCharacter.tscn" id="1_2yysc"]
 [ext_resource type="TileSet" uid="uid://7aab2m8bs133" path="res://resources/BasicTileSet.tres" id="1_pjsid"]
@@ -20,7 +20,7 @@ tile_map_data = PackedByteArray("AAD6/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAANAAIAAAAAAAA
 tile_set = ExtResource("2_0kwa6")
 script = ExtResource("3_w137l")
 
-[node name="Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
+[node name="Tiles#Tile" parent="." instance=ExtResource("4_c7b2p")]
 position = Vector2(29, 353)
 upgrade = ExtResource("5_hdme0")
 

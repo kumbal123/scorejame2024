@@ -4,8 +4,6 @@
 
 [node name="EnemyManager" type="Node"]
 script = ExtResource("1_ww5y1")
-EnemyPool = {}
-SpawnInterval = 5.0
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
