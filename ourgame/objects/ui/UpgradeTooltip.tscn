@@ -1,0 +1,163 @@
+[gd_scene load_steps=10 format=3 uid="uid://ghtg50uixtnd"]
+
+[ext_resource type="Theme" uid="uid://fwgxp2g5lfx3" path="res://main_theme.tres" id="1_4rsfl"]
+[ext_resource type="Script" path="res://src/ui/UpgradeTooltip.cs" id="2_huiwa"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5iah1"]
+
+[sub_resource type="FontFile" id="FontFile_pfbnp"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_c1drp"]
+font = SubResource("FontFile_pfbnp")
+font_size = 24
+shadow_color = Color(0, 0, 0, 0.521569)
+
+[sub_resource type="Animation" id="Animation_qvflp"]
+resource_name = "Appear"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.784314)]
+}
+
+[sub_resource type="Animation" id="Animation_bxmu1"]
+resource_name = "Disappear"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_otwx8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.784314)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cx80s"]
+_data = {
+"Appear": SubResource("Animation_qvflp"),
+"Disappear": SubResource("Animation_bxmu1"),
+"RESET": SubResource("Animation_otwx8")
+}
+
+[node name="UpgradeTooltip" type="TextureRect"]
+modulate = Color(1, 1, 1, 0.784314)
+z_index = 5
+custom_minimum_size = Vector2(327, 194)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -191.0
+offset_top = -246.0
+offset_right = 136.0
+offset_bottom = -52.0
+grow_horizontal = 2
+theme = ExtResource("1_4rsfl")
+texture = SubResource("PlaceholderTexture2D_5iah1")
+script = ExtResource("2_huiwa")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Some upgrade"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 56.0
+offset_right = 20.0
+offset_bottom = 96.0
+grow_horizontal = 2
+
+[node name="LevelUpDesc" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -98.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Attack 10 -> 20"
+label_settings = SubResource("LabelSettings_c1drp")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cx80s")
+}
+autoplay = "Appear"

@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://cl8b4vkvkp3jx"]
+
+[ext_resource type="PackedScene" uid="uid://caytun7rnljs0" path="res://objects/tile/TileBase.tscn" id="1_n2oow"]
+[ext_resource type="Script" path="res://src/tiles/TileUpgrade.cs" id="2_6kec6"]
+
+[sub_resource type="Gradient" id="Gradient_0fb22"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8h70l"]
+gradient = SubResource("Gradient_0fb22")
+
+[node name="Tile" instance=ExtResource("1_n2oow")]
+texture = SubResource("GradientTexture2D_8h70l")
+script = ExtResource("2_6kec6")
+upgrade = null
