@@ -22,11 +22,14 @@ public partial class EnemyBase : Node2D
 	private Vector2 CurrentDirection { get; set; } = Vector2.Zero;
 	private CharacterBody2D Player;
 
+	private AnimationPlayer anim;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		Player = GetTree().Root.GetNode("MainScene").GetNode<CharacterBody2D>("PlayerCharacter");
 		// Vector2 pos = Player.Position;
+		anim = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,9 +62,11 @@ public partial class EnemyBase : Node2D
 	/// <param name="damage">Damage to take.</param>
 	public void TakeDamage(int damage)
 	{
+		GD.Print("Ouchie ouch");
 		// Add some kind of defense reduction formula...
 		Health -= damage;
-		if (Health < 0)
+		anim.Play("TakeDamage");
+		if (Health <= 0)
 			Deaded();
 	}
 
@@ -71,7 +76,7 @@ public partial class EnemyBase : Node2D
 	public void Deaded()
 	{
 		// TODO: reward score.
-		
+
 		// Cool death animation and also drop stuff?
 		QueueFree();
 	}

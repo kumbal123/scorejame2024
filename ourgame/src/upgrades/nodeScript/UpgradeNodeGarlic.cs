@@ -1,11 +1,13 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Garlic clone, attacks in an every every few ticks.
+/// </summary>
 public partial class UpgradeNodeGarlic : UpgradeNode
 {
 	private Area2D hitbox;
-
-	// Called when the node enters the scene tree for the first time.
+	
 	public override void _Ready()
 	{
 		hitbox = GetNode<Area2D>("Area2D");
@@ -14,6 +16,9 @@ public partial class UpgradeNodeGarlic : UpgradeNode
 	public override void UpgradeParametersChanged()
     {
         Scale = Vector2.One * Upgrade.Size;
+        GetNode<Timer>("DamageTick").WaitTime = ((UpgradeDataGarlic)Upgrade).TickLength;
+		// Triggers the attack for free when upgrading
+		TriggerAttack();
     }
 
     public void TriggerAttack()
@@ -21,9 +26,8 @@ public partial class UpgradeNodeGarlic : UpgradeNode
 		foreach (Node2D body in hitbox.GetOverlappingBodies())
 		{
 			// if body.IsInGroup("enemy")
-			// Shouldn't be necessary if Area2D is only set to detect a specific layer, which all enemies will be set to.
+			// Shouldn't be necessary if Area2D is only set to detect a specific layer = 4, which all enemies will be set to.
 			((EnemyBase) body).TakeDamage(Upgrade.Attack);
 		}
 	}
-
 }

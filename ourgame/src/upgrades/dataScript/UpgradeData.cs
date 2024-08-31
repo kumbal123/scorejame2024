@@ -10,9 +10,9 @@ using System.Runtime.ExceptionServices;
 public abstract partial class UpgradeData : Resource
 {
 	public int Level { get; private set; } = 0;
-	public int Attack { get; protected set; }
-	public float Size { get; protected set; }
-	public float Speed { get; protected set; }
+	public int Attack { get; protected set; } = 20;
+	public float Size { get; protected set; } = 1.0f;
+	public float Speed { get; protected set; } = 1.0f;
 
 	public abstract string Title { get; }
 
@@ -45,7 +45,7 @@ public abstract partial class UpgradeData : Resource
 		if (Level == 1)
 			ObtainUpgrade();
 		else
-			LevelUpIncreaseParameters();
+			ResolveLevelUp();
 	}
 
 	/// <summary>
@@ -56,6 +56,16 @@ public abstract partial class UpgradeData : Resource
 		UpgradeNode node = GetUpgradeNode;
 		ParametersUpdated += node.UpgradeParametersChanged;
 		PlayerCharacter.Instance.AddUpgradeNode(node);
+	}
+
+	/// <summary>
+	/// Calls the overriden LevelUpIncreaseParameters which handles the actual stat changes,
+	/// then emits signal to notify Node that parameters changed.
+	/// </summary>
+	private void ResolveLevelUp()
+	{
+		LevelUpIncreaseParameters();
+		EmitSignal(SignalName.ParametersUpdated);
 	}
 
 	/// <summary>

@@ -174,13 +174,7 @@ text = "Something about how the effect is upgraded and better wow"
 label_settings = SubResource("LabelSettings_c1drp")
 autowrap_mode = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_cx80s")
-}
-autoplay = "Appear"
-
-[node name="Label" type="Label" parent="."]
+[node name="ControlHelp" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -194,3 +188,9 @@ offset_bottom = 37.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Press \"Spacebar\" to level up"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cx80s")
+}
+autoplay = "Appear"
