@@ -15,17 +15,23 @@ public partial class EnemyBase : CharacterBody2D
 	[Export]
 	public int Speed { get; set; } = 100;
 
+	/// <summary>
+	/// Score reward gained for killing this enemy.
+	/// </summary>
 	[Export]
 	public int KillScoreReward { get; set; } = 100;
 
-	// The direction towards which the enemy is moving.
-	private Vector2 CurrentDirection { get; set; } = Vector2.Zero;
 	private CharacterBody2D Player;
 	private AnimationPlayer anim;
+
+	// The frame, during which enemy updates movement direction.
+	// Randomly generated at start to spread out load.
+	private ulong updateFrame;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		updateFrame = GD.Randi() % 60;
 		Player = PlayerCharacter.Instance;
 		// Vector2 pos = Player.Position;
 		anim = GetNode<AnimationPlayer>("AnimationPlayer");
@@ -34,25 +40,32 @@ public partial class EnemyBase : CharacterBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		RecalculateFollow();
+		// Only recalculate direction every x frames to spread out calculations.
+		if (Engine.GetProcessFrames() % updateFrame == 0) {
+			RecalculateFollow();
+		}
+	}
+
+    public override void _PhysicsProcess(double delta)
+    {
 		MoveTowardsTarget();
-	}
+    }
 
-	/// <summary>
-	/// Recalculate and update angle at which to move towards player
-	/// </summary>
-	// ... maybe only call every x frames to save resources
-	private void RecalculateFollow()
+    /// <summary>
+    /// Recalculate and update angle at which to move towards player
+    /// </summary>
+    // ... maybe only call every x frames to save resources
+    private void RecalculateFollow()
 	{
-
+		Velocity = (Player.Position - Position).Normalized() * Speed;
 	}
 
 	/// <summary>
-	/// Move in direction of currentDirection
+	/// Move in direction of Velocity
 	/// </summary>
 	private void MoveTowardsTarget()
 	{
-
+		MoveAndSlide();
 	}
 
 	/// <summary>
