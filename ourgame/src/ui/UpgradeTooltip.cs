@@ -20,6 +20,17 @@ public partial class UpgradeTooltip : TextureRect
 	}
 
 	/// <summary>
+	/// Plays animation and sound feedback for buying upgrade
+	/// </summary>
+	/// /// <param name="upgrade">The displayed upgrade. Necessary for updating the tooltip with the next level data.</param>
+	public void BuyUpgrade(UpgradeData upgrade)
+	{
+		GetNode<AnimationPlayer>("Anim2").Play("Buy");
+		GetNode<AudioStreamPlayer>("AudioStreamPlayer").Play();
+		LoadUpgradeData(upgrade);
+	}
+
+	/// <summary>
 	/// Fades the tooltip out and automatically frees it afterwards.
 	/// </summary>
 	public void Disappear()

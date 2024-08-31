@@ -33,9 +33,10 @@ public partial class TileUpgrade : TileBase
 
     public override void _UnhandledKeyInput(InputEvent @event)
     {
-        if (@event.IsActionReleased("ui_accept"))
+        if (@event.IsActionReleased("ui_accept")) {
 			upgrade.LevelUp();
-			tooltip.LoadUpgradeData(upgrade);
+			tooltip.BuyUpgrade(upgrade);
+		}
     }
 
     public override void BodyExitedTile(Node2D body)
