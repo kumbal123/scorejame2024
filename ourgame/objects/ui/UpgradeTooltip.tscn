@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://ghtg50uixtnd"]
 
-[ext_resource type="Theme" uid="uid://fwgxp2g5lfx3" path="res://main_theme.tres" id="1_4rsfl"]
+[ext_resource type="Theme" uid="uid://cnnej4s13nr1s" path="res://main_theme.tres" id="1_4rsfl"]
 [ext_resource type="Script" path="res://src/ui/UpgradeTooltip.cs" id="2_huiwa"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5iah1"]

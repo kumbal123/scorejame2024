@@ -11,6 +11,7 @@ public partial class PlayerCharacter : CharacterBody2D
 	public static PlayerCharacter Instance { get; private set; } = null;
 
 	private float Speed { get; set; } = 200;
+    private float Hp { get; set; } = 1000;
 	private Node Upgrades { get; set; } 
 
 	public override void _EnterTree()
@@ -47,5 +48,15 @@ public partial class PlayerCharacter : CharacterBody2D
 	{
 		Upgrades.AddChild(node);
 	}
+
+    public void TakeDamage(float value)
+    {
+        Hp -= value;
+    }
+
+    public void Heal(float value)
+    {
+        Hp += value;
+    }
 
 }
