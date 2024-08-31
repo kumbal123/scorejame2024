@@ -18,6 +18,17 @@ public partial class TileUpgrade : TileBase
         SetProcessUnhandledKeyInput(false);
     }
 
+	/// <summary>
+	/// Handle the input for player buying upgrade.
+	/// </summary>
+	public override void _UnhandledKeyInput(InputEvent @event)
+    {
+        if (@event.IsActionReleased("ui_accept")) {
+			upgrade.LevelUp();
+			tooltip.BuyUpgrade(upgrade);
+		}
+    }
+
     /// <summary>
     /// If body is player, spawn and display tooltip
     /// </summary>
@@ -31,14 +42,9 @@ public partial class TileUpgrade : TileBase
 		}	
     }
 
-    public override void _UnhandledKeyInput(InputEvent @event)
-    {
-        if (@event.IsActionReleased("ui_accept")) {
-			upgrade.LevelUp();
-			tooltip.BuyUpgrade(upgrade);
-		}
-    }
-
+	/// <summary>
+	/// Despawn tooltip upon player exiting tile.
+	/// </summary>
     public override void BodyExitedTile(Node2D body)
     {
 		if (body.IsInGroup("player")) {

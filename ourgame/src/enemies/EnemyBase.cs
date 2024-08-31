@@ -31,7 +31,7 @@ public partial class EnemyBase : CharacterBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		updateFrame = GD.Randi() % 60;
+		updateFrame = 1 + GD.Randi() % 60;
 		Player = PlayerCharacter.Instance;
 		// Vector2 pos = Player.Position;
 		anim = GetNode<AnimationPlayer>("AnimationPlayer");

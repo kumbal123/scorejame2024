@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://fwgxp2g5lfx3" path="res://main_theme.tres" id="2_hvfal"]
 [ext_resource type="PackedScene" uid="uid://cl8b4vkvkp3jx" path="res://objects/tile/TileUpgrade.tscn" id="4_c7b2p"]
 [ext_resource type="Resource" uid="uid://bnhacw6i1q8vl" path="res://resources/upgrades/UpgradeGarlic.tres" id="5_hdme0"]
-[ext_resource type="PackedScene" uid="uid://d2un22sd8tg5j" path="res://objects/enemies/basic/EnemyFirst.tscn" id="6_7t84n"]
+[ext_resource type="PackedScene" uid="uid://dot3fp7gvva3j" path="res://objects/managers/EnemyManager.tscn" id="5_tuci1"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -16,6 +16,14 @@ tile_set = ExtResource("1_pjsid")
 [node name="Tile" parent="." instance=ExtResource("4_c7b2p")]
 position = Vector2(29, 353)
 upgrade = ExtResource("5_hdme0")
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_2yysc")]
+position = Vector2(134, 178)
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
+
+[node name="EnemyManager" parent="." instance=ExtResource("5_tuci1")]
+InitialSpawnInterval = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -36,11 +44,3 @@ offset_top = 20.0
 offset_right = 259.0
 offset_bottom = 44.0
 text = "Wave: %d/%d"
-
-[node name="PlayerCharacter" parent="." instance=ExtResource("1_2yysc")]
-position = Vector2(134, 178)
-
-[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
-
-[node name="EnemyFirst" parent="." instance=ExtResource("6_7t84n")]
-position = Vector2(525, 189)
