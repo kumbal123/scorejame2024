@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://c47nhbfu5ykcp"]
+[gd_scene load_steps=10 format=4 uid="uid://c47nhbfu5ykcp"]
 
 [ext_resource type="PackedScene" uid="uid://bs57v323kxwey" path="res://objects/PlayerCharacter.tscn" id="1_2yysc"]
 [ext_resource type="Script" path="res://OrcScene.cs" id="1_g0oca"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dot3fp7gvva3j" path="res://objects/managers/EnemyManager.tscn" id="5_tuci1"]
 
 [node name="MainScene" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_g0oca")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

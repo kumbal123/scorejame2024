@@ -54,6 +54,7 @@ script = ExtResource("1_28oji")
 metadata/_edit_vertical_guides_ = [-838.0]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 
 [node name="CollisionHitbox" type="CollisionShape2D" parent="." groups=["enemy"]]
 shape = SubResource("RectangleShape2D_ng1uo")
