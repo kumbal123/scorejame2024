@@ -52,6 +52,7 @@ public partial class PlayerCharacter : CharacterBody2D
     public void TakeDamage(float value)
     {
         Hp -= value;
+		GD.PrintErr(Hp);
     }
 
     public void Heal(float value)
