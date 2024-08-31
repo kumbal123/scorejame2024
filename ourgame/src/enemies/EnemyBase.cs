@@ -4,7 +4,7 @@ using System;
 /// <summary>
 /// Base class for all enemies.
 /// </summary>
-public partial class EnemyBase : Node2D
+public partial class EnemyBase : CharacterBody2D
 {
 	[Export]
 	public int Health { get; set; } = 100;
@@ -21,13 +21,12 @@ public partial class EnemyBase : Node2D
 	// The direction towards which the enemy is moving.
 	private Vector2 CurrentDirection { get; set; } = Vector2.Zero;
 	private CharacterBody2D Player;
-
 	private AnimationPlayer anim;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Player = GetTree().Root.GetNode("MainScene").GetNode<CharacterBody2D>("PlayerCharacter");
+		Player = PlayerCharacter.Instance;
 		// Vector2 pos = Player.Position;
 		anim = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
@@ -62,8 +61,7 @@ public partial class EnemyBase : Node2D
 	/// <param name="damage">Damage to take.</param>
 	public void TakeDamage(int damage)
 	{
-		GD.Print("Ouchie ouch");
-		// Add some kind of defense reduction formula...
+		// Add some kind of defense calculation formula...
 		Health -= damage;
 		anim.Play("TakeDamage");
 		if (Health <= 0)

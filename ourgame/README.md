@@ -5,7 +5,7 @@ TileBase.cs - base parent class used for tiles that have some effect when steppe
 
 EnemyBase - base parent class used for enemy Nodes.
 
-Upgrades are implemented with two base parent classes:
+Upgrades are implemented using two base parent classes:
 - UpgradeData, that contains the upgrade's data such as name, stats and level up changes.
 - UpgradeNode, which is the actual node that is spawned in-game to attack enemies, etc.
 
