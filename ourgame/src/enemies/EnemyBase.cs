@@ -114,7 +114,6 @@ public partial class EnemyBase : CharacterBody2D
 		DisableEnemy();
 		animatedSprite.Play("death");
 		await ToSignal(animatedSprite, "animation_finished");
-		GD.Print("I'm out...");
 		QueueFree();
 	}
 
