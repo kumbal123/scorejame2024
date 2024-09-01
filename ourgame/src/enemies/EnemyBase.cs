@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 /// <summary>
 /// Base class for all enemies.
@@ -99,20 +100,29 @@ public partial class EnemyBase : CharacterBody2D
 		anim.Play("TakeDamage");
 		if (Health <= 0)
 			Deaded();
-        //Global.score = +1;
 	}
 
 	/// <summary>
 	/// Called when the enemy is defeated.
 	/// </summary>
-	public void Deaded()
+	public async void Deaded()
 	{
-		// TODO: reward score.
-
         CanvasLayer stopwatch = GetNode<CanvasLayer>("/root/Stopwatch");
         stopwatch.Call("add_score_for_kill", KillScoreReward);
-		// Cool death animation and also drop stuff?
+		
+		// Cool death animation and also darop stuff?
+		DisableEnemy();
 		animatedSprite.Play("death");
+		await ToSignal(animatedSprite, "animation_finished");
+		GD.Print("I'm out...");
 		QueueFree();
+	}
+
+	/// <summary>
+	/// Disables enemy functions such as movement and hitboxes.
+	/// </summary>
+	private void DisableEnemy()
+	{
+		ProcessMode = ProcessModeEnum.Disabled;
 	}
 }

@@ -30,7 +30,7 @@ public partial class DebugWindow : ColorRect
 	{
 		PlayerCharacter p = PlayerCharacter.Instance;
 		playerStats.Text = $"Player Stats\nHP: {p.Hp}/{p.MaxHp}\nAttack: {p.Damage}\nSpeed: {p.Speed}";
-		enemyInfo.Text = $"Enemy count: {enemyManager.GetChildCount()}\nLava tiles: {lavaMap.GetUsedCellsById(0).Count}";
+		enemyInfo.Text = $"Enemy count: {enemyManager.GetChildCount() - 1}\nLava tiles: {lavaMap.GetUsedCellsById(0).Count}";
 	}
 	
 }

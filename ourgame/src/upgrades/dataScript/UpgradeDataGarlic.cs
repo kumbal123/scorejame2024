@@ -22,7 +22,8 @@ public partial class UpgradeDataGarlic : UpgradeData
 
     protected override void LevelUpIncreaseParameters()
     {
-        Size += 0.1f;
+        Attack += 3;
+        Size += 0.25f;
         Speed += 0.1f;
     }
 
@@ -31,7 +32,7 @@ public partial class UpgradeDataGarlic : UpgradeData
         if (Level == 0)
             return "Damages enemies in an area around you every few seconds.";
         else
-            return "gets bigger and faster ig, idk";
+            return "gets stronger, bigger, and faster ig, idk";
     }
 
 }

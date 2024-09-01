@@ -12,7 +12,7 @@ public partial class PlayerCharacter : CharacterBody2D
 	public static PlayerCharacter Instance { get; private set; } = null;
 
 	public float Speed { get { return _speed; } set { _speed = value; } }
-    public float Hp { get { return _hp; } set {_hp = value; HpBar.Value = value; } }
+    public float Hp { get { return _hp; } private set {_hp = value; HpBar.Value = value; } }
 	public float MaxHp { get { return _maxHp; } set {_maxHp = value; HpBar.MaxValue = value; } }
 	public int Damage { get {return _damage; } set { _damage = value; }}
 
