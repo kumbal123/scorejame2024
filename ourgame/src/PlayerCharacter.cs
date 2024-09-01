@@ -91,7 +91,7 @@ public partial class PlayerCharacter : CharacterBody2D
 	}
 
 	private void PlayerInteraction() {
-		if (Input.IsActionPressed("ui_accept")) {
+		if (Input.IsActionJustPressed("ui_accept")) {
 			AnimSprite.Play("slash");
 			_isAttacking = true;
 
