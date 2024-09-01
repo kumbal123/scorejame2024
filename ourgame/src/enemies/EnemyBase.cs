@@ -91,7 +91,7 @@ public partial class EnemyBase : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	protected void BodyEntered(Node2D body) {
+	protected virtual void BodyEntered(Node2D body) {
 		if (body.IsInGroup("player")) {
 			((PlayerCharacter)body).EnterDamageZone();
 			animatedSprite.Play("attack1");
