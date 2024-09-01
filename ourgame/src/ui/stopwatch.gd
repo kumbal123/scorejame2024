@@ -35,6 +35,6 @@ func update_score():
 		
 		$ScoreLabel.text = "Score: " + str(score)
 
-func add_score_for_kill():
-	score += 5
+func add_score_for_kill(value: int):
+	score += value
 	$ScoreLabel.text = "Score: " + str(score)

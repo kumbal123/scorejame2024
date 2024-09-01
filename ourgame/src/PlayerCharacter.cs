@@ -20,6 +20,9 @@ public partial class PlayerCharacter : CharacterBody2D
 	private float _hp;
 	private float _maxHp;
 	private int _damage = 50;
+
+
+
 	private bool _isAttacking = false;
 
 	/// <summary>
@@ -70,7 +73,7 @@ public partial class PlayerCharacter : CharacterBody2D
 
         // Normalize the velocity to ensure consistent speed in diagonal movement
         if (Velocity.Length() > 0) {
-            Velocity = Velocity.Normalized() * _speed;
+            Velocity = Velocity.Normalized() * Speed;
 			if (Velocity.X < 0) {
 				AnimSprite.FlipH = true;
 				SlashHitbox.Scale = new Vector2(-1, 1);
@@ -93,7 +96,7 @@ public partial class PlayerCharacter : CharacterBody2D
 			_isAttacking = true;
 
 			foreach (Node2D body in SlashHitbox.GetOverlappingBodies()) {
-				((EnemyBase) body).TakeDamage(_damage);
+				((EnemyBase) body).TakeDamage(Damage);
 			}
 
 		}

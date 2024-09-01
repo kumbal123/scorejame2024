@@ -258,8 +258,6 @@ script = ExtResource("1_1gxcp")
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_mebff")
 animation = &"slash"
-frame = 2
-frame_progress = 1.0
 
 [node name="CollisionHitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_fhjus")

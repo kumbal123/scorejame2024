@@ -110,7 +110,7 @@ public partial class EnemyBase : CharacterBody2D
 		// TODO: reward score.
 
         CanvasLayer stopwatch = GetNode<CanvasLayer>("/root/Stopwatch");
-        stopwatch.Call("add_score_for_kill");
+        stopwatch.Call("add_score_for_kill", KillScoreReward);
 		// Cool death animation and also drop stuff?
 		animatedSprite.Play("death");
 		QueueFree();

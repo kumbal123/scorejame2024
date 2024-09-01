@@ -11,21 +11,28 @@ public partial class UpgradeDataPlayer : UpgradeData
     public int MaxHp;
     private PlayerCharacter Player;
 
+    /// <summary>
+    /// These number represent how much the stats increase with each upgrade.
+    /// It's added on top of the previous ones!
+    /// </summary>
     public UpgradeDataPlayer()
     {    
         Attack = 10;
         Size = 1.0f;
-        Speed = 1.0f;
+        Speed = 10.0f;
         MaxHp = 50;
     }
 
     protected override UpgradeNode GetUpgradeNode => 
         GD.Load<PackedScene>("res://objects/upgradeInstance/UpgradePlayer.tscn").Instantiate<UpgradeNode>();
 
+    /// <summary>
+    /// The stat increase itself gets bigger with each level up. 
+    /// </summary>
     protected override void LevelUpIncreaseParameters()
     {
-        Attack += 15;
-        Speed += 25f;
+        Attack += 1;
+        Speed += 5.0f;
         MaxHp += 10;
     }
 
