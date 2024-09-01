@@ -13,7 +13,7 @@ public partial class EnemyManager : Node
 	/// </summary>
 	public Dictionary<string, int> EnemyPool { get; set; } = new()
 	{
-		{"res://objects/enemies/basic/OrcEnemy.tscn", 4},
+		{"res://objects/enemies/basic/ArcherEnemy.tscn", 2},{"res://objects/enemies/basic/OrcEnemy.tscn", 2}
 	};
 
 	/// <summary>

@@ -17,7 +17,7 @@ public partial class EnemyBase : CharacterBody2D
 	public int Speed { get; set; } = 100;
 	//protected AnimatedSprite2D animatedSprite = null;
 	protected AnimatedSprite2D animatedSprite { get; set; }
-	private bool _isAttacking = false;
+	protected bool _isAttacking = false;
 
 	/// <summary>
 	/// Score reward gained for killing this enemy.
@@ -27,7 +27,7 @@ public partial class EnemyBase : CharacterBody2D
 
     public float Damage => Attack;
 
-    private CharacterBody2D Player;
+    protected CharacterBody2D Player;
 	private AnimationPlayer anim;
 
 	// The frame, during which enemy updates movement direction.
@@ -77,7 +77,7 @@ public partial class EnemyBase : CharacterBody2D
 	/// <summary>
 	/// Move in direction of Velocity
 	/// </summary>
-	private void MoveTowardsTarget()
+	protected virtual void MoveTowardsTarget()
 	{
 		if(Velocity.X > 0){
 			animatedSprite.FlipH = false;
@@ -111,7 +111,6 @@ public partial class EnemyBase : CharacterBody2D
 		Health -= damage;
 		anim.Play("TakeDamage");
 		if (Health <= 0){
-			animatedSprite.Play("death");
 			Deaded();
 		}
 	}

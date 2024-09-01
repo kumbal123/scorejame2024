@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://djcu0y73avj0b" path="res://objects/audio/SoundQueue.tscn" id="4_0gydl"]
 [ext_resource type="AudioStream" uid="uid://ces51badryg88" path="res://audio/sword1.mp3" id="5_vfahp"]
 [ext_resource type="PackedScene" uid="uid://dmt2o1ke2e6mf" path="res://objects/audio/SoundPool.tscn" id="6_fpi2q"]
-[ext_resource type="AudioStream" uid="uid://ct3bhwy0g80dn" path="res://audio/death.mp3" id="6_kl11a"]
+[ext_resource type="AudioStream" uid="uid://ct3bhwy0g80dn" path="res://audio/death_orc.mp3" id="6_kl11a"]
 [ext_resource type="AudioStream" uid="uid://b17rwns6nvds8" path="res://audio/sword2.mp3" id="8_k8iue"]
 [ext_resource type="AudioStream" uid="uid://ci5y0rtyr1qd4" path="res://audio/sword3.mp3" id="9_xan75"]
 
@@ -246,3 +246,4 @@ stream = ExtResource("9_xan75")
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="." index="5"]
 stream = ExtResource("6_kl11a")
+volume_db = -9.674

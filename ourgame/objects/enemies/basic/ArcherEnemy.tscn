@@ -1,0 +1,270 @@
+[gd_scene load_steps=39 format=3 uid="uid://cjcibxifukw2s"]
+
+[ext_resource type="PackedScene" uid="uid://d3oto5p5fwan4" path="res://objects/enemies/EnemyBase.tscn" id="1_3th0d"]
+[ext_resource type="Script" path="res://src/enemies/ArcherEnemy.cs" id="2_6630o"]
+[ext_resource type="Texture2D" uid="uid://eyc3ngo15l73" path="res://asssets/Archer.png" id="3_bbibj"]
+[ext_resource type="PackedScene" uid="uid://djcu0y73avj0b" path="res://objects/audio/SoundQueue.tscn" id="4_0gydl"]
+[ext_resource type="AudioStream" uid="uid://m4aesl5vp4ku" path="res://audio/arrowShoot1.wav" id="5_05fi2"]
+[ext_resource type="AudioStream" uid="uid://brfso66wnm7xp" path="res://audio/arrowShoot2.wav" id="6_7hs83"]
+[ext_resource type="PackedScene" uid="uid://dmt2o1ke2e6mf" path="res://objects/audio/SoundPool.tscn" id="6_fpi2q"]
+[ext_resource type="AudioStream" uid="uid://c4nppasxqp3m" path="res://audio/arrowShoot3.wav" id="7_h62h8"]
+[ext_resource type="AudioStream" uid="uid://c8mg2omut1rq0" path="res://audio/death_archer.mp3" id="9_j5blm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4km2"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yscer"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gboo"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmyoc"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ngtj"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(256, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ec7gb"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(320, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ti6qk"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(384, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjsrg"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bahw"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wu8p"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1s3i"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axrpg"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs311"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mrdh"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(384, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spef5"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(448, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt4w1"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqvmy"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amkae"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8jfo"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(192, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px6jq"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3wrk"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4v0l"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62epa"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcycm"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6u5p"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqkxg"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfdlw"]
+atlas = ExtResource("3_bbibj")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_51u5k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4km2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yscer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gboo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmyoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ngtj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ec7gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ti6qk")
+}],
+"loop": false,
+"name": &"attack1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjsrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bahw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wu8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1s3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axrpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs311")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mrdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spef5")
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nt4w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqvmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amkae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8jfo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px6jq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3wrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4v0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62epa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcycm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6u5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqkxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfdlw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 13.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6uga1"]
+size = Vector2(72, 96)
+
+[node name="ArcherEnemy" instance=ExtResource("1_3th0d")]
+script = ExtResource("2_6630o")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_51u5k")
+animation = &"attack1"
+frame = 6
+frame_progress = 1.0
+offset = Vector2(0, -6)
+
+[node name="CollisionHitbox" parent="." index="1"]
+position = Vector2(-2, -18)
+shape = SubResource("RectangleShape2D_6uga1")
+
+[node name="OverlapHitbox" parent="Area2D" index="0"]
+visible = false
+position = Vector2(8, -19.5)
+shape = SubResource("RectangleShape2D_6uga1")
+
+[node name="BowSound" parent="." index="4" instance=ExtResource("6_fpi2q")]
+
+[node name="SoundQueue" parent="BowSound" index="0" instance=ExtResource("4_0gydl")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BowSound/SoundQueue" index="0"]
+stream = ExtResource("5_05fi2")
+volume_db = -9.674
+
+[node name="SoundQueue2" parent="BowSound" index="1" instance=ExtResource("4_0gydl")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BowSound/SoundQueue2" index="0"]
+stream = ExtResource("6_7hs83")
+volume_db = -12.093
+
+[node name="SoundQueue3" parent="BowSound" index="2" instance=ExtResource("4_0gydl")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BowSound/SoundQueue3" index="0"]
+stream = ExtResource("7_h62h8")
+volume_db = -10.884
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="." index="5"]
+stream = ExtResource("9_j5blm")
+volume_db = -9.674
