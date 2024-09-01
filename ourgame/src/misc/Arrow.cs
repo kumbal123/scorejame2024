@@ -10,6 +10,8 @@ public partial class Arrow : RigidBody2D
 
     private Timer timer;
     private Vector2 originalPosition;
+    private AudioStreamPlayer _arrowSound;
+    private bool _soundPlayed = false;
 
     public void LaunchArrow(Vector2 direction)
     {
@@ -26,16 +28,31 @@ public partial class Arrow : RigidBody2D
         timer.Start();
     }
 
+    public override void _PhysicsProcess(double delta)
+    {
+        // Check if the sound has finished playing
+        if (_soundPlayed && !_arrowSound.Playing)
+        {
+            OnSoundFinished();
+            _soundPlayed = false; // Prevent multiple calls
+        }
+    }
+
+
     private void BodyEntered(Node2D body)
     {
-        GD.Print($"Arrow hit: {body.Name}"); // Print the name of the node hit
         if (body.IsInGroup("player"))
         {
             PlayerCharacter player = (PlayerCharacter)body;
-            GD.Print("Hit player");
-            player.TakeDamage(Damage); // Apply damage to the player
-            QueueFree(); // Destroy the arrow after hitting the player
+            _arrowSound = GetNode<AudioStreamPlayer>("ArrowHit");
+            _arrowSound.Play();
+            player.TakeDamage(Damage);
         }
+    }
+    private void OnSoundFinished()
+    {
+        GD.Print("Sound has finished playing");
+        QueueFree();
     }
 
     private void OnTimeToDie()

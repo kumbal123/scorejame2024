@@ -1,7 +1,14 @@
-[gd_scene load_steps=39 format=3 uid="uid://bs57v323kxwey"]
+[gd_scene load_steps=46 format=3 uid="uid://bs57v323kxwey"]
 
 [ext_resource type="Script" path="res://src/PlayerCharacter.cs" id="1_1gxcp"]
 [ext_resource type="Texture2D" uid="uid://0u7bcth0247i" path="res://asssets/Soldier.png" id="2_e2sae"]
+[ext_resource type="PackedScene" uid="uid://dmt2o1ke2e6mf" path="res://objects/audio/SoundPool.tscn" id="3_lj1rl"]
+[ext_resource type="PackedScene" uid="uid://djcu0y73avj0b" path="res://objects/audio/SoundQueue.tscn" id="4_jccfg"]
+[ext_resource type="AudioStream" uid="uid://nnl17jh404er" path="res://audio/bodyHitHard1.wav" id="5_eiiwo"]
+[ext_resource type="AudioStream" uid="uid://d2ootk6v07ojo" path="res://audio/metalSwoosh1.wav" id="6_td8jo"]
+[ext_resource type="AudioStream" uid="uid://buc51ieq13rux" path="res://audio/metalSwoosh2.wav" id="7_xxfbw"]
+[ext_resource type="AudioStream" uid="uid://qly1h6ho1sin" path="res://audio/metalSwoosh3.wav" id="8_q381a"]
+[ext_resource type="AudioStream" uid="uid://dgwxt5kx4sn2i" path="res://audio/metalSwoosh4.wav" id="9_jjis0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jbow6"]
 atlas = ExtResource("2_e2sae")
@@ -329,7 +336,7 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_mebff")
 animation = &"walk"
 
-[node name="CollisionHitbox" type="CollisionShape2D" parent="."]
+[node name="CollisionHitbox" type="CollisionShape2D" parent="." groups=["player"]]
 shape = SubResource("CapsuleShape2D_fhjus")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -387,6 +394,43 @@ libraries = {
 }
 
 [node name="DamageTick" type="Timer" parent="."]
+
+[node name="DamageSound" parent="." instance=ExtResource("3_lj1rl")]
+
+[node name="SoundQueue" parent="DamageSound" instance=ExtResource("4_jccfg")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DamageSound/SoundQueue"]
+stream = ExtResource("5_eiiwo")
+volume_db = -9.674
+
+[node name="SoundQueue2" parent="DamageSound" instance=ExtResource("4_jccfg")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DamageSound/SoundQueue2"]
+stream = ExtResource("5_eiiwo")
+volume_db = -10.884
+pitch_scale = 0.82
+
+[node name="SlashSound" parent="." instance=ExtResource("3_lj1rl")]
+
+[node name="SoundQueue" parent="SlashSound" instance=ExtResource("4_jccfg")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SlashSound/SoundQueue"]
+stream = ExtResource("6_td8jo")
+
+[node name="SoundQueue2" parent="SlashSound" instance=ExtResource("4_jccfg")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SlashSound/SoundQueue2"]
+stream = ExtResource("7_xxfbw")
+
+[node name="SoundQueue3" parent="SlashSound" instance=ExtResource("4_jccfg")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SlashSound/SoundQueue3"]
+stream = ExtResource("8_q381a")
+
+[node name="SoundQueue4" parent="SlashSound" instance=ExtResource("4_jccfg")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SlashSound/SoundQueue4"]
+stream = ExtResource("9_jjis0")
 
 [connection signal="body_entered" from="Slash" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="DamageTick" to="." method="DamageCheck"]

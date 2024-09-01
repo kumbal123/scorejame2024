@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3svc8jkvei2p"
+path="res://.godot/imported/Glorious Morning.mp3-ddbae9a999be1a2f6c3a37dde8d3b4f4.mp3str"
+
+[deps]
+
+source_file="res://audio/Glorious Morning.mp3"
+dest_files=["res://.godot/imported/Glorious Morning.mp3-ddbae9a999be1a2f6c3a37dde8d3b4f4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

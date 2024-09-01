@@ -233,16 +233,19 @@ shape = SubResource("RectangleShape2D_6uga1")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SwordSound/SoundQueue" index="0"]
 stream = ExtResource("5_vfahp")
+volume_db = -14.512
 
 [node name="SoundQueue2" parent="SwordSound" index="1" instance=ExtResource("4_0gydl")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SwordSound/SoundQueue2" index="0"]
 stream = ExtResource("8_k8iue")
+volume_db = -15.721
 
 [node name="SoundQueue3" parent="SwordSound" index="2" instance=ExtResource("4_0gydl")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SwordSound/SoundQueue3" index="0"]
 stream = ExtResource("9_xan75")
+volume_db = -14.512
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="." index="5"]
 stream = ExtResource("6_kl11a")

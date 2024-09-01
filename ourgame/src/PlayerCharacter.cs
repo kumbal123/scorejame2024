@@ -38,6 +38,8 @@ public partial class PlayerCharacter : CharacterBody2D
 	private ProgressBar HpBar { get; set; }
 	private AnimationPlayer Anim { get; set; }
 	private AnimatedSprite2D AnimSprite { get; set; }
+	private SoundPool _attackSound;
+	private SoundPool _damageSound;
 
     public override void _EnterTree()
     {
@@ -47,6 +49,8 @@ public partial class PlayerCharacter : CharacterBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		_attackSound = GetNode<SoundPool>("SlashSound");
+		_damageSound = GetNode<SoundPool>("DamageSound");
 		DamageTick = GetNode<Timer>("DamageTick");
 		Hitbox = GetNode<Area2D>("Area2D");
 		SlashHitbox = GetNode<Area2D>("Slash");
@@ -95,6 +99,7 @@ public partial class PlayerCharacter : CharacterBody2D
 	private void PlayerInteraction() {
 		if (Input.IsActionJustPressed("ui_accept")) {
 			AnimSprite.Play("slash");
+			_attackSound.PlayRandomSound();
 			_isAttacking = true;
 
 			foreach (Node2D body in SlashHitbox.GetOverlappingBodies()) {
@@ -155,6 +160,7 @@ public partial class PlayerCharacter : CharacterBody2D
 		// Stop() so that the damage animation starts over if new damage is taken while animation still in progress.
 		// Otherwise default behavior would just finish playing the animation from previous damage
 		Anim.Stop();
+		_damageSound.PlayRandomSound();
 		Anim.Play("TakeDamage");
 		// TODO: defense calculation
         Hp -= value;

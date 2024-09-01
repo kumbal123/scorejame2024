@@ -13,7 +13,6 @@ public partial class OrcEnemy : EnemyBase
 	}
     public override void playAttackSound() {
 		_swordSound.PlayRandomSound();
-		GD.Print("Is Attacking");
 	}
 
 	public override async void Deaded()

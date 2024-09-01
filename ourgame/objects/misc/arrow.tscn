@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://di2pk3wucoc0o"]
+[gd_scene load_steps=6 format=3 uid="uid://di2pk3wucoc0o"]
 
 [ext_resource type="Script" path="res://src/misc/Arrow.cs" id="1_2o0gs"]
 [ext_resource type="Texture2D" uid="uid://dsmefhdxsb847" path="res://asssets/Archer_arrow.png" id="2_fywgd"]
+[ext_resource type="AudioStream" uid="uid://ck213uwlljvfm" path="res://audio/arrowHitGround.wav" id="3_uqilt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6morp"]
 size = Vector2(64, 8)
@@ -25,5 +26,9 @@ texture = ExtResource("2_fywgd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_cldn0")
+
+[node name="ArrowHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_uqilt")
+pitch_scale = 1.51
 
 [connection signal="body_entered" from="Area2D" to="." method="BodyEntered"]

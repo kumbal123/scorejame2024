@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://c47nhbfu5ykcp"]
+[gd_scene load_steps=23 format=4 uid="uid://c47nhbfu5ykcp"]
 
 [ext_resource type="PackedScene" uid="uid://bs57v323kxwey" path="res://objects/PlayerCharacter.tscn" id="1_2yysc"]
 [ext_resource type="Script" path="res://OrcScene.cs" id="1_g0oca"]
@@ -14,12 +14,13 @@
 [ext_resource type="Script" path="res://src/ui/DebugWindow.cs" id="11_1jr6s"]
 [ext_resource type="Script" path="res://src/ui/MainUI.cs" id="11_klqmh"]
 [ext_resource type="Script" path="res://src/ui/GameOverScreen.cs" id="13_o1dgd"]
+[ext_resource type="AudioStream" uid="uid://3svc8jkvei2p" path="res://audio/Glorious Morning.mp3" id="15_byyuv"]
 
-[sub_resource type="Resource" id="Resource_2adw3"]
+[sub_resource type="Resource" id="Resource_r2qjy"]
 resource_local_to_scene = true
 script = ExtResource("6_fthll")
 
-[sub_resource type="Resource" id="Resource_qcve8"]
+[sub_resource type="Resource" id="Resource_imnut"]
 resource_local_to_scene = true
 script = ExtResource("7_f5654")
 
@@ -125,11 +126,11 @@ script = ExtResource("3_w137l")
 
 [node name="Tiles#Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
 position = Vector2(29, 353)
-upgrade = SubResource("Resource_2adw3")
+upgrade = SubResource("Resource_r2qjy")
 
 [node name="Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
 position = Vector2(550, 250)
-upgrade = SubResource("Resource_qcve8")
+upgrade = SubResource("Resource_imnut")
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_tuci1")]
 InitialSpawnInterval = 10.0
@@ -232,6 +233,11 @@ text = "Retry"
 libraries = {
 "": SubResource("AnimationLibrary_ebrjc")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_byyuv")
+volume_db = -15.721
+autoplay = true
 
 [connection signal="timeout" from="CanvasLayer/UI/DebugWindow/RefreshRate" to="CanvasLayer/UI/DebugWindow" method="RefreshInfo"]
 [connection signal="pressed" from="CanvasLayer/UI/GameOverScreen/Button" to="CanvasLayer/UI/GameOverScreen" method="Retry"]
