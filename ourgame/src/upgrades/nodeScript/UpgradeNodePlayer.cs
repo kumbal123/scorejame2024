@@ -11,12 +11,15 @@ public partial class UpgradeNodePlayer : UpgradeNode
 	public override void _Ready()
 	{
 		Player = PlayerCharacter.Instance;
+		// Needs to upgrade stats on first level up too, i.e. when this is attached.
+		UpgradeParametersChanged();
 	}
 
 	public override void UpgradeParametersChanged()
     {
 		UpgradeDataPlayer stats = (UpgradeDataPlayer)Upgrade;
 
+		Player.Heal(stats.MaxHp);
 		Player.MaxHp += stats.MaxHp;
 		Player.Speed += stats.Speed;
 		Player.Damage += stats.Attack;

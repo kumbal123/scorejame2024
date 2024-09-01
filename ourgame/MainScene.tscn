@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://c47nhbfu5ykcp"]
+[gd_scene load_steps=12 format=4 uid="uid://c47nhbfu5ykcp"]
 
 [ext_resource type="PackedScene" uid="uid://bs57v323kxwey" path="res://objects/PlayerCharacter.tscn" id="1_2yysc"]
 [ext_resource type="Script" path="res://OrcScene.cs" id="1_g0oca"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://bnhacw6i1q8vl" path="res://resources/upgrades/UpgradeGarlic.tres" id="5_hdme0"]
 [ext_resource type="PackedScene" uid="uid://dot3fp7gvva3j" path="res://objects/managers/EnemyManager.tscn" id="5_tuci1"]
 [ext_resource type="Resource" uid="uid://b6twdicqhik1v" path="res://resources/upgrades/UpgradePlayer.tres" id="7_sl7mp"]
+[ext_resource type="Script" path="res://src/ui/DebugWindow.cs" id="11_1jr6s"]
 
 [node name="MainScene" type="Node2D"]
 texture_filter = 1
@@ -61,3 +62,34 @@ offset_top = 20.0
 offset_right = 259.0
 offset_bottom = 44.0
 text = "Wave: %d/%d"
+
+[node name="DebugWindow" type="ColorRect" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -379.0
+offset_right = 582.0
+grow_vertical = 0
+color = Color(0, 0, 0, 0.808)
+script = ExtResource("11_1jr6s")
+
+[node name="PlayerStats" type="Label" parent="CanvasLayer/UI/DebugWindow"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 53.0
+offset_right = 363.0
+offset_bottom = 243.0
+
+[node name="EnemyInfo" type="Label" parent="CanvasLayer/UI/DebugWindow"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 260.0
+offset_right = 363.0
+offset_bottom = 368.0
+
+[node name="RefreshRate" type="Timer" parent="CanvasLayer/UI/DebugWindow"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="CanvasLayer/UI/DebugWindow/RefreshRate" to="CanvasLayer/UI/DebugWindow" method="RefreshInfo"]
