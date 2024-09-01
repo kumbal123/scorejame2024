@@ -179,6 +179,8 @@ public partial class PlayerCharacter : CharacterBody2D
 		await ToSignal(Anim, "animation_finished");
 		await ToSignal(GetTree().CreateTimer(1.0), "timeout");
 		EmitSignal(SignalName.PlayerDied);
+
+		GetNode<MainUI>("%UI").DisplayGameOver();
 	}
 
 	private void OnAnimationFinished()

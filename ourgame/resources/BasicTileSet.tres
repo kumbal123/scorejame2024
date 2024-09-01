@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://7aab2m8bs133"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://7aab2m8bs133"]
 
 [ext_resource type="Texture2D" uid="uid://br3dqj7hbktyi" path="res://imgs/tileset/spritesheet_placeholder.png" id="1_krx66"]
 [ext_resource type="PackedScene" uid="uid://c1yip3f1st1qk" path="res://objects/tile/TileLava.tscn" id="2_0enb2"]
+[ext_resource type="Texture2D" uid="uid://bkxbvbetamgtl" path="res://asssets/Tile Set.png" id="3_25vdy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_evh7p"]
 texture = ExtResource("1_krx66")
@@ -12,7 +13,52 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_6soda"]
 scenes/1/scene = ExtResource("2_0enb2")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qoco5"]
+texture = ExtResource("3_25vdy")
+2:2/0 = 0
+2:2/0/terrain_set = 0
+3:2/0 = 0
+3:2/0/terrain_set = 0
+4:2/0 = 0
+4:3/0 = 0
+4:3/0/terrain_set = 0
+3:3/0 = 0
+3:3/0/terrain_set = 0
+2:3/0 = 0
+2:3/0/terrain_set = 0
+1:3/0 = 0
+1:3/0/terrain_set = 0
+1:4/0 = 0
+2:4/0 = 0
+2:4/0/terrain_set = 0
+3:4/0 = 0
+3:4/0/terrain_set = 0
+4:4/0 = 0
+4:4/0/terrain_set = 0
+4:5/0 = 0
+3:5/0 = 0
+3:5/0/terrain_set = 0
+1:5/0 = 0
+2:5/0 = 0
+2:5/0/terrain_set = 0
+2:6/0 = 0
+1:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+3:10/0 = 0
+3:9/0 = 0
+3:8/0 = 0
+2:8/0 = 0
+2:9/0 = 0
+2:10/0 = 0
+1:10/0 = 0
+1:9/0 = 0
+1:8/0 = 0
+1:2/0 = 0
+
 [resource]
 tile_size = Vector2i(64, 64)
+terrain_set_0/mode = 0
 sources/0 = SubResource("TileSetAtlasSource_evh7p")
 sources/1 = SubResource("TileSetScenesCollectionSource_6soda")
+sources/4 = SubResource("TileSetAtlasSource_qoco5")
