@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://c47nhbfu5ykcp"]
+[gd_scene load_steps=25 format=4 uid="uid://c47nhbfu5ykcp"]
 
 [ext_resource type="PackedScene" uid="uid://bs57v323kxwey" path="res://objects/PlayerCharacter.tscn" id="1_2yysc"]
 [ext_resource type="Script" path="res://OrcScene.cs" id="1_g0oca"]
@@ -16,14 +16,13 @@
 [ext_resource type="Script" path="res://src/ui/MainUI.cs" id="11_klqmh"]
 [ext_resource type="Script" path="res://src/ui/GameOverScreen.cs" id="13_o1dgd"]
 [ext_resource type="PackedScene" uid="uid://c53v155fkryhp" path="res://objects/ui/Stopwatch.tscn" id="16_ngyis"]
-[ext_resource type="Script" path="res://src/ui/Submit.gd" id="17_eb6dg"]
 [ext_resource type="Script" path="res://src/ui/PlayerManager.gd" id="17_j4f6q"]
 
-[sub_resource type="Resource" id="Resource_h20uu"]
+[sub_resource type="Resource" id="Resource_nnwwu"]
 resource_local_to_scene = true
 script = ExtResource("6_fthll")
 
-[sub_resource type="Resource" id="Resource_tx826"]
+[sub_resource type="Resource" id="Resource_ocand"]
 resource_local_to_scene = true
 script = ExtResource("7_f5654")
 
@@ -130,12 +129,12 @@ script = ExtResource("3_w137l")
 
 [node name="Tiles#Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
 position = Vector2(29, 353)
-upgrade = SubResource("Resource_h20uu")
+upgrade = SubResource("Resource_nnwwu")
 
 [node name="Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
 position = Vector2(550, 250)
 texture = ExtResource("9_f7xis")
-upgrade = SubResource("Resource_tx826")
+upgrade = SubResource("Resource_ocand")
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_tuci1")]
 InitialSpawnInterval = 10.0
@@ -227,7 +226,6 @@ offset_left = 651.0
 offset_top = 324.0
 offset_right = 975.0
 offset_bottom = 365.0
-placeholder_text = "Enter your name"
 
 [node name="Score" type="Label" parent="CanvasLayer/UI/GameOverScreen"]
 layout_mode = 1
@@ -255,7 +253,6 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Submit
 "
-script = ExtResource("17_eb6dg")
 
 [node name="Button" type="Button" parent="CanvasLayer/UI/GameOverScreen"]
 layout_mode = 1

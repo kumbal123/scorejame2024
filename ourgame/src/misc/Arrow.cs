@@ -28,11 +28,9 @@ public partial class Arrow : RigidBody2D
 
     private void BodyEntered(Node2D body)
     {
-        GD.Print($"Arrow hit: {body.Name}"); // Print the name of the node hit
         if (body.IsInGroup("player"))
         {
             PlayerCharacter player = (PlayerCharacter)body;
-            GD.Print("Hit player");
             player.TakeDamage(Damage); // Apply damage to the player
             QueueFree(); // Destroy the arrow after hitting the player
         }

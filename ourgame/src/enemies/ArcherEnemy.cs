@@ -81,7 +81,7 @@ public partial class ArcherEnemy : EnemyBase
 
 	public override async void Deaded()
 	{
-        CanvasLayer stopwatch = GetNode<CanvasLayer>("/root/Stopwatch");
+        CanvasLayer stopwatch = GetTree().Root.GetChild(1).GetNode<CanvasLayer>("stopwatch");
         stopwatch.Call("add_score_for_kill", KillScoreReward);
 
 		DisableEnemy();

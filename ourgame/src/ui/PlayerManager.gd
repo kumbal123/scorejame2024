@@ -6,7 +6,7 @@ var game_API_key = "dev_2d6de82cb1b44bf9af30c804573f0317"
 var development_mode = true
 var leaderboard_key = "leaderboardKey"
 var session_token = ""
-var score = 0
+var score
 
 # HTTP Request node can only handle one call per node
 var auth_http = HTTPRequest.new()
@@ -16,7 +16,11 @@ var submit_score_http = HTTPRequest.new()
 var set_name_http = HTTPRequest.new()
 var get_name_http = HTTPRequest.new()
 
+var button
+
 func _ready():
+	button = get_tree().root.get_child(1).get_node("CanvasLayer").get_node("UI").get_node("GameOverScreen").get_node("NameField")
+	score = get_tree().root.get_child(1).get_node("CanvasLayer").get_node("UI").get_node("GameOverScreen").get_node("Score")
 	_authentication_request()
 
 func _process(_delta):
@@ -72,7 +76,8 @@ func _on_authentication_request_completed(result, response_code, headers, body):
 	
 	# Print server response
 	print(json.get_data())
-	
+
+	button.text = "Player-" + str(json.get_data()["player_id"])
 	# Clear node
 	auth_http.queue_free()
 	# Get leaderboards
@@ -110,20 +115,21 @@ func _on_leaderboard_request_completed(result, response_code, headers, body):
 	leaderboard_http.queue_free()
 
 
-func _upload_score(score: int):
-	var data = { "score": str(score) }
+func _upload_score():
+	_change_player_name()
+
+	var data = { "score": str(score.text.split(': ')[1]) }
 	var headers = ["Content-Type: application/json", "x-session-token:"+session_token]
 	submit_score_http = HTTPRequest.new()
 	add_child(submit_score_http)
 	submit_score_http.request_completed.connect(_on_upload_score_request_completed)
 	# Send request
 	submit_score_http.request("https://api.lootlocker.io/game/leaderboards/"+leaderboard_key+"/submit", headers, HTTPClient.METHOD_POST, JSON.stringify(data))
-	
-	
-	print(data)
+	print("Uplaoding Request Send")
 
 
 func _on_upload_score_request_completed(result, response_code, headers, body) :
+	print("Uploading completed")
 	var json = JSON.new()
 	json.parse(body.get_string_from_utf8())
 	
@@ -138,7 +144,7 @@ func _change_player_name():
 	print("Changing player name")
 	
 	# use this variable for setting the name of the player
-	var player_name = "newName"
+	var player_name = button.text
 	
 	var data = { "name": str(player_name) }
 	var url =  "https://api.lootlocker.io/game/player/name"
@@ -150,8 +156,10 @@ func _change_player_name():
 	set_name_http.request_completed.connect(_on_player_set_name_request_completed)
 	# Send request
 	set_name_http.request(url, headers, HTTPClient.METHOD_PATCH, JSON.stringify(data))
+	print("Changing name request completed")
 	
 func _on_player_set_name_request_completed(result, response_code, headers, body):
+	print("Changing name compelete")
 	var json = JSON.new()
 	json.parse(body.get_string_from_utf8())
 	
