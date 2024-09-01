@@ -103,7 +103,6 @@ _data = {
 }
 
 [node name="MainScene" type="Node2D"]
-texture_filter = 1
 script = ExtResource("1_g0oca")
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -121,9 +120,7 @@ tile_map_data = PackedByteArray("AAD6/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAANAAIAAAAAAAA
 tile_set = ExtResource("2_0kwa6")
 script = ExtResource("3_w137l")
 
-[node name="Tiles" type="Node2D" parent="."]
-
-[node name="Tiles#Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
+[node name="Tiles#Tile" parent="." instance=ExtResource("4_c7b2p")]
 position = Vector2(29, 353)
 upgrade = SubResource("Resource_ax010")
 
@@ -142,8 +139,6 @@ position = Vector2(134, 178)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" type="Control" parent="CanvasLayer"]
-unique_name_in_owner = true
-process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -151,7 +146,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_hvfal")
-script = ExtResource("11_klqmh")
 
 [node name="WaveLabel" type="Label" parent="CanvasLayer/UI"]
 layout_mode = 1

@@ -15,7 +15,12 @@ public partial class EnemyBase : CharacterBody2D
 	public int Defense { get; set; } = 0;
 	[Export]
 	public int Speed { get; set; } = 100;
-	protected AnimatedSprite2D animatedSprite = null;
+	//protected AnimatedSprite2D animatedSprite = null;
+	protected AnimatedSprite2D animatedSprite { get; set; }
+	private bool _isAttacking = false;
+	
+	private bool _isDead = false;
+	
 
 	/// <summary>
 	/// Score reward gained for killing this enemy.
@@ -40,7 +45,11 @@ public partial class EnemyBase : CharacterBody2D
 		anim = GetNode<AnimationPlayer>("AnimationPlayer");
 		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		GetNode<DamagingArea2D>("Area2D").Damage = Attack;
+		animatedSprite.AnimationFinished += OnAnimationFinished;
+		loadSounds();
 	}
+
+	public virtual void loadSounds(){}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -53,6 +62,9 @@ public partial class EnemyBase : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
+		if (_isAttacking){
+			return;
+		}
 		MoveTowardsTarget();
     }
 
@@ -82,13 +94,16 @@ public partial class EnemyBase : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	private void BodyEntered(Node2D body) {
+	protected void BodyEntered(Node2D body) {
 		if (body.IsInGroup("player")) {
 			((PlayerCharacter)body).EnterDamageZone();
 			animatedSprite.Play("attack1");
+			_isAttacking = true;
+			playAttackSound();
 		}
 	}
-
+	public virtual void playDeathSound(){}
+	public virtual void playAttackSound(){}
 	/// <summary>
 	/// Incurs damage to the enemy. Takes defense into calculation.
 	/// </summary>
@@ -98,8 +113,10 @@ public partial class EnemyBase : CharacterBody2D
 		// Add some kind of defense calculation formula...
 		Health -= damage;
 		anim.Play("TakeDamage");
-		if (Health <= 0)
-			Deaded();
+		if (Health <= 0){
+			animatedSprite.Play("death");
+			_isDead = true;
+		}
 	}
 
 	/// <summary>
@@ -111,11 +128,20 @@ public partial class EnemyBase : CharacterBody2D
         stopwatch.Call("add_score_for_kill", KillScoreReward);
 		
 		// Cool death animation and also darop stuff?
+		playDeathSound();
 		DisableEnemy();
 		animatedSprite.Play("death");
 		await ToSignal(animatedSprite, "animation_finished");
 		QueueFree();
 	}
+	private void OnAnimationFinished()
+    {
+        if (animatedSprite.Animation == "attack1")
+        {
+            _isAttacking = false;
+            animatedSprite.Play("idle");
+        }
+    }
 
 	/// <summary>
 	/// Disables enemy functions such as movement and hitboxes.
