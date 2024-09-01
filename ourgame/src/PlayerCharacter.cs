@@ -163,6 +163,7 @@ public partial class PlayerCharacter : CharacterBody2D
     public void Heal(float value)
     {
         Hp += value;
+		if (Hp > MaxHp) Hp = MaxHp;
     }
 
 	/// <summary>

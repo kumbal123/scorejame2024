@@ -19,8 +19,8 @@ public partial class UpgradeNodePlayer : UpgradeNode
     {
 		UpgradeDataPlayer stats = (UpgradeDataPlayer)Upgrade;
 
-		Player.Heal(stats.MaxHp);
 		Player.MaxHp += stats.MaxHp;
+		Player.Heal(stats.MaxHp);
 		Player.Speed += stats.Speed;
 		Player.Damage += stats.Attack;
     }
