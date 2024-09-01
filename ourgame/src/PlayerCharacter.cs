@@ -160,7 +160,7 @@ public partial class PlayerCharacter : CharacterBody2D
 		// Stop() so that the damage animation starts over if new damage is taken while animation still in progress.
 		// Otherwise default behavior would just finish playing the animation from previous damage
 		Anim.Stop();
-		_damageSound.PlayRandomSound();
+		//_damageSound.PlayRandomSound();
 		Anim.Play("TakeDamage");
 		// TODO: defense calculation
         Hp -= value;

@@ -18,6 +18,8 @@ public partial class ArcherEnemy : EnemyBase
     public override void playAttackSound() {
 		_bowSound.PlayRandomSound();
 	}
+	// archers are OP, maybe no collision damage?
+	protected override void BodyEntered(Node2D body) {}
 
 	protected override void MoveTowardsTarget(){
 		Vector2 directionToPlayer = Player.Position - GlobalPosition;

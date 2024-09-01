@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=25 format=4 uid="uid://c47nhbfu5ykcp"]
-=======
-[gd_scene load_steps=23 format=4 uid="uid://c47nhbfu5ykcp"]
->>>>>>> music
+[gd_scene load_steps=26 format=4 uid="uid://c47nhbfu5ykcp"]
 
 [ext_resource type="PackedScene" uid="uid://bs57v323kxwey" path="res://objects/PlayerCharacter.tscn" id="1_2yysc"]
 [ext_resource type="Script" path="res://OrcScene.cs" id="1_g0oca"]
@@ -11,7 +7,7 @@
 [ext_resource type="Theme" uid="uid://cnnej4s13nr1s" path="res://main_theme.tres" id="2_hvfal"]
 [ext_resource type="Script" path="res://src/tileMaps/LavaMap.cs" id="3_w137l"]
 [ext_resource type="PackedScene" uid="uid://cl8b4vkvkp3jx" path="res://objects/tile/TileUpgrade.tscn" id="4_c7b2p"]
-[ext_resource type="TileSet" uid="uid://y3adi2pe2rrs" path="res://resources/tiles/Stone.tres" id="5_3idep"]
+[ext_resource type="TileSet" uid="uid://pjxhuxwedb6m" path="res://resources/tiles/Stone.tres" id="5_3idep"]
 [ext_resource type="PackedScene" uid="uid://dot3fp7gvva3j" path="res://objects/managers/EnemyManager.tscn" id="5_tuci1"]
 [ext_resource type="Script" path="res://src/upgrades/dataScript/UpgradeDataGarlic.cs" id="6_fthll"]
 [ext_resource type="Script" path="res://src/upgrades/dataScript/UpgradeDataPlayer.cs" id="7_f5654"]
@@ -19,24 +15,15 @@
 [ext_resource type="Script" path="res://src/ui/DebugWindow.cs" id="11_1jr6s"]
 [ext_resource type="Script" path="res://src/ui/MainUI.cs" id="11_klqmh"]
 [ext_resource type="Script" path="res://src/ui/GameOverScreen.cs" id="13_o1dgd"]
-<<<<<<< HEAD
-[ext_resource type="PackedScene" uid="uid://c53v155fkryhp" path="res://objects/ui/Stopwatch.tscn" id="16_ngyis"]
+[ext_resource type="AudioStream" uid="uid://3svc8jkvei2p" path="res://audio/Glorious Morning.mp3" id="15_byyuv"]
+[ext_resource type="PackedScene" path="res://objects/ui/Stopwatch.tscn" id="16_ngyis"]
 [ext_resource type="Script" path="res://src/ui/PlayerManager.gd" id="17_j4f6q"]
 
-[sub_resource type="Resource" id="Resource_nnwwu"]
+[sub_resource type="Resource" id="Resource_f11qw"]
 resource_local_to_scene = true
 script = ExtResource("6_fthll")
 
-[sub_resource type="Resource" id="Resource_ocand"]
-=======
-[ext_resource type="AudioStream" uid="uid://3svc8jkvei2p" path="res://audio/Glorious Morning.mp3" id="15_byyuv"]
-
-[sub_resource type="Resource" id="Resource_r2qjy"]
-resource_local_to_scene = true
-script = ExtResource("6_fthll")
-
-[sub_resource type="Resource" id="Resource_imnut"]
->>>>>>> music
+[sub_resource type="Resource" id="Resource_q5vm8"]
 resource_local_to_scene = true
 script = ExtResource("7_f5654")
 
@@ -143,20 +130,12 @@ script = ExtResource("3_w137l")
 
 [node name="Tiles#Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
 position = Vector2(29, 353)
-<<<<<<< HEAD
-upgrade = SubResource("Resource_nnwwu")
+upgrade = SubResource("Resource_f11qw")
 
 [node name="Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
 position = Vector2(550, 250)
 texture = ExtResource("9_f7xis")
-upgrade = SubResource("Resource_ocand")
-=======
-upgrade = SubResource("Resource_r2qjy")
-
-[node name="Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
-position = Vector2(550, 250)
-upgrade = SubResource("Resource_imnut")
->>>>>>> music
+upgrade = SubResource("Resource_q5vm8")
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_tuci1")]
 InitialSpawnInterval = 10.0
@@ -296,15 +275,13 @@ libraries = {
 "": SubResource("AnimationLibrary_ebrjc")
 }
 
-<<<<<<< HEAD
 [node name="PlayerManager" type="Node2D" parent="."]
 script = ExtResource("17_j4f6q")
-=======
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_byyuv")
-volume_db = -15.721
+volume_db = -14.512
 autoplay = true
->>>>>>> music
 
 [connection signal="timeout" from="CanvasLayer/UI/DebugWindow/RefreshRate" to="CanvasLayer/UI/DebugWindow" method="RefreshInfo"]
 [connection signal="pressed" from="CanvasLayer/UI/GameOverScreen/Submit" to="PlayerManager" method="_upload_score"]
