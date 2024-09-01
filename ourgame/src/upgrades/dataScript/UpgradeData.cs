@@ -54,6 +54,7 @@ public abstract partial class UpgradeData : Resource
 	private void ObtainUpgrade()
 	{
 		UpgradeNode node = GetUpgradeNode;
+		node.Upgrade = this;
 		ParametersUpdated += node.UpgradeParametersChanged;
 		PlayerCharacter.Instance.AddUpgradeNode(node);
 	}

@@ -12,4 +12,10 @@ public partial class OrcScene : Node2D
 	public override void _Process(double delta)
 	{
 	}
+
+	public void GameEnd()
+	{
+		GetTree().Paused = true;
+		GetNode<MainUI>("%UI").DisplayGameOver();
+	}
 }

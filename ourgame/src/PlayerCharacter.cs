@@ -7,6 +7,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 /// </summary>
 public partial class PlayerCharacter : CharacterBody2D
 {
+	[Signal]
+	public delegate void PlayerDiedEventHandler();
+
 	// Allows other scripts to obtain the PlayerCharacter node reference using this static variable
 	// Almost like making the player character node global.
 	public static PlayerCharacter Instance { get; private set; } = null;
@@ -22,8 +25,8 @@ public partial class PlayerCharacter : CharacterBody2D
 	private int _damage = 50;
 
 
-
 	private bool _isAttacking = false;
+	private bool stopHesAlreadyDead = false;
 
 	/// <summary>
 	/// A timer that ticks every 1 second while player is still taking damage, invulnerable until the next tick.
@@ -36,10 +39,9 @@ public partial class PlayerCharacter : CharacterBody2D
 	private AnimationPlayer Anim { get; set; }
 	private AnimatedSprite2D AnimSprite { get; set; }
 
-	public override void _EnterTree()
+    public override void _EnterTree()
     {
-        if (Instance != null) this.QueueFree();
-        else Instance = this;
+        Instance = this;
     }
 
 	// Called when the node enters the scene tree for the first time.
@@ -149,6 +151,7 @@ public partial class PlayerCharacter : CharacterBody2D
 	/// <param name="value">The initial damage value, will then be processed through defense formula.</param>
 	public void TakeDamage(float value)
     {
+		if (stopHesAlreadyDead) return;
 		// Stop() so that the damage animation starts over if new damage is taken while animation still in progress.
 		// Otherwise default behavior would just finish playing the animation from previous damage
 		Anim.Stop();
@@ -167,10 +170,15 @@ public partial class PlayerCharacter : CharacterBody2D
     }
 
 	/// <summary>
-	/// When the player has deaded. Show scoreboard and retry button?
+	/// When the player has deaded. Show scoreboard and retry button.
 	/// </summary>
-	public void GameOver() {
-		// TODO
+	public async void GameOver() {
+		ProcessMode = ProcessModeEnum.Disabled;
+		stopHesAlreadyDead = true;
+		Anim.Play("Die");
+		await ToSignal(Anim, "animation_finished");
+		await ToSignal(GetTree().CreateTimer(1.0), "timeout");
+		EmitSignal(SignalName.PlayerDied);
 	}
 
 	private void OnAnimationFinished()

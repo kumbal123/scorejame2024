@@ -16,14 +16,12 @@ public partial class DebugWindow : ColorRect
 			QueueFree();
 		}
 		else {
-			enemyManager = GetNode<EnemyManager>("/root/MainScene/EnemyManager");
-			lavaMap = GetNode<LavaMap>("/root/MainScene/LavaMapLayer");
+			enemyManager = GetTree().CurrentScene.GetNode<EnemyManager>("EnemyManager");
+			lavaMap = GetTree().CurrentScene.GetNode<LavaMap>("LavaMapLayer");
 			playerStats = GetNode<Label>("PlayerStats");
 			enemyInfo = GetNode<Label>("EnemyInfo");
 			RefreshInfo();
-			
 		}
-		
 	}
 
 	public void RefreshInfo()

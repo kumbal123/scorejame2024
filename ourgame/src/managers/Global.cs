@@ -16,14 +16,22 @@ public partial class Global : Node
 
 	public override void _EnterTree()
     {
-        if (Instance != null) this.QueueFree();
+        if (Instance != null) QueueFree();
         else Instance = this;
     }
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		// Initializes the seed to a random one for RNG calls.
 		GD.Randomize();
 	}
+
+    public void RestartGame()
+    {
+        GetTree().Paused = false;
+        GetTree().Root.GetNode<GodotObject>("Stopwatch").Set("time", 0.0);
+        GetTree().Root.GetNode<GodotObject>("Stopwatch").Set("score", 0);
+        GetTree().Root.GetNode<GodotObject>("Stopwatch").Set("time_passed", 0);
+		GetTree().ChangeSceneToFile("res://MainScene.tscn");
+    }
 }

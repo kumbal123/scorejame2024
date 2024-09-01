@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://src/upgrades/dataScript/UpgradeDataGarlic.cs" id="1_l1nqa"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_l1nqa")

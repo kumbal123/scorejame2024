@@ -9,7 +9,6 @@ public abstract partial class UpgradeNode : Node2D
 	/// <summary>
 	/// The resource that contains the data for the upgrade.
 	/// </summary>
-	[Export]
 	public UpgradeData Upgrade { get; set; }
 
 	/// <summary>
