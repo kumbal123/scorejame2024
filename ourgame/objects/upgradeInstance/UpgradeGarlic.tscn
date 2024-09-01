@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://df30rk071rwl6"]
 
 [ext_resource type="Script" path="res://src/upgrades/nodeScript/UpgradeNodeGarlic.cs" id="1_qpdeu"]
-[ext_resource type="Texture2D" uid="uid://dactiscsk0iix" path="res://imgs/vfx/garlic_placeholder.png" id="2_qu32n"]
+[ext_resource type="Texture2D" uid="uid://bqjmq58u7od30" path="res://imgs/vfx/garlic.png" id="2_ahupp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p2rd1"]
 radius = 128.0
@@ -11,7 +11,7 @@ script = ExtResource("1_qpdeu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.313726)
-texture = ExtResource("2_qu32n")
+texture = ExtResource("2_ahupp")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

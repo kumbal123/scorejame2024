@@ -17,7 +17,7 @@ public partial class DebugWindow : ColorRect
 		}
 		else {
 			enemyManager = GetTree().CurrentScene.GetNode<EnemyManager>("EnemyManager");
-			lavaMap = GetTree().CurrentScene.GetNode<LavaMap>("LavaMapLayer");
+			lavaMap = GetTree().CurrentScene.GetNode<LavaMap>("Node2D/LavaMapLayer");
 			playerStats = GetNode<Label>("PlayerStats");
 			enemyInfo = GetNode<Label>("EnemyInfo");
 			RefreshInfo();

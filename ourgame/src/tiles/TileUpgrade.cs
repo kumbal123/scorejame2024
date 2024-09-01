@@ -12,6 +12,7 @@ public partial class TileUpgrade : TileBase
 	[Export]
 	public UpgradeData upgrade;
 	private UpgradeTooltip tooltip;
+	private Sprite2D sprite2D;
 
     public override void _Ready()
     {
