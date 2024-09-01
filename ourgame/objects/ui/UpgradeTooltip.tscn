@@ -227,7 +227,7 @@ offset_right = 318.0
 offset_bottom = 37.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "Press \"Spacebar\" to level up"
+text = "Press \"R\" to level up"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

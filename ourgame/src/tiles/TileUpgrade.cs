@@ -23,7 +23,7 @@ public partial class TileUpgrade : TileBase
 	/// </summary>
 	public override void _UnhandledKeyInput(InputEvent @event)
     {
-        if (@event.IsActionReleased("ui_accept")) {
+        if (@event.IsActionReleased("ui_aux_confirm")) {
 			upgrade.LevelUp();
 			tooltip.BuyUpgrade(upgrade);
 		}
