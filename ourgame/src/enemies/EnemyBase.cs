@@ -18,9 +18,6 @@ public partial class EnemyBase : CharacterBody2D
 	//protected AnimatedSprite2D animatedSprite = null;
 	protected AnimatedSprite2D animatedSprite { get; set; }
 	private bool _isAttacking = false;
-	
-	private bool _isDead = false;
-	
 
 	/// <summary>
 	/// Score reward gained for killing this enemy.
@@ -115,14 +112,14 @@ public partial class EnemyBase : CharacterBody2D
 		anim.Play("TakeDamage");
 		if (Health <= 0){
 			animatedSprite.Play("death");
-			_isDead = true;
+			Deaded();
 		}
 	}
 
 	/// <summary>
 	/// Called when the enemy is defeated.
 	/// </summary>
-	public async void Deaded()
+	public virtual async void Deaded()
 	{
         CanvasLayer stopwatch = GetNode<CanvasLayer>("/root/Stopwatch");
         stopwatch.Call("add_score_for_kill", KillScoreReward);
@@ -146,7 +143,7 @@ public partial class EnemyBase : CharacterBody2D
 	/// <summary>
 	/// Disables enemy functions such as movement and hitboxes.
 	/// </summary>
-	private void DisableEnemy()
+	protected void DisableEnemy()
 	{
 		ProcessMode = ProcessModeEnum.Disabled;
 	}
