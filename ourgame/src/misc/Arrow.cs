@@ -44,14 +44,9 @@ public partial class Arrow : RigidBody2D
         if (body.IsInGroup("player"))
         {
             PlayerCharacter player = (PlayerCharacter)body;
-<<<<<<< HEAD
-            player.TakeDamage(Damage); // Apply damage to the player
-            QueueFree(); // Destroy the arrow after hitting the player
-=======
             _arrowSound = GetNode<AudioStreamPlayer>("ArrowHit");
             _arrowSound.Play();
             player.TakeDamage(Damage);
->>>>>>> music
         }
     }
     private void OnSoundFinished()
