@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://c47nhbfu5ykcp"]
+[gd_scene load_steps=32 format=4 uid="uid://c47nhbfu5ykcp"]
 
 [ext_resource type="PackedScene" uid="uid://bs57v323kxwey" path="res://objects/PlayerCharacter.tscn" id="1_2yysc"]
 [ext_resource type="Script" path="res://OrcScene.cs" id="1_g0oca"]
@@ -16,14 +16,20 @@
 [ext_resource type="Script" path="res://src/ui/MainUI.cs" id="11_klqmh"]
 [ext_resource type="Script" path="res://src/ui/GameOverScreen.cs" id="13_o1dgd"]
 [ext_resource type="AudioStream" uid="uid://3svc8jkvei2p" path="res://audio/Glorious Morning.mp3" id="15_byyuv"]
+[ext_resource type="Texture2D" uid="uid://1ce024kutmjs" path="res://asssets/music_unmuted.png" id="15_usd2s"]
+[ext_resource type="Texture2D" uid="uid://45obf71ihv0e" path="res://asssets/music_muted.png" id="16_ht161"]
 [ext_resource type="PackedScene" path="res://objects/ui/Stopwatch.tscn" id="16_ngyis"]
+[ext_resource type="Texture2D" uid="uid://biixuspsrpgt3" path="res://asssets/game_unmuted.png" id="17_i85jm"]
 [ext_resource type="Script" path="res://src/ui/PlayerManager.gd" id="17_j4f6q"]
+[ext_resource type="Script" path="res://src/audio/MusicButton.cs" id="17_rlxx0"]
+[ext_resource type="Script" path="res://src/audio/GameSoundsButton.cs" id="18_oe55w"]
+[ext_resource type="Texture2D" uid="uid://rk5y7t4uyrtt" path="res://asssets/game_muted.png" id="19_yer6w"]
 
-[sub_resource type="Resource" id="Resource_a74u4"]
+[sub_resource type="Resource" id="Resource_32nut"]
 resource_local_to_scene = true
 script = ExtResource("6_fthll")
 
-[sub_resource type="Resource" id="Resource_7hnrg"]
+[sub_resource type="Resource" id="Resource_5fqnn"]
 resource_local_to_scene = true
 script = ExtResource("7_f5654")
 
@@ -130,12 +136,12 @@ script = ExtResource("3_w137l")
 
 [node name="Tiles#Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
 position = Vector2(29, 353)
-upgrade = SubResource("Resource_a74u4")
+upgrade = SubResource("Resource_32nut")
 
 [node name="Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
 position = Vector2(550, 250)
 texture = ExtResource("9_f7xis")
-upgrade = SubResource("Resource_7hnrg")
+upgrade = SubResource("Resource_5fqnn")
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_tuci1")]
 InitialSpawnInterval = 10.0
@@ -160,6 +166,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_hvfal")
 script = ExtResource("11_klqmh")
+
+[node name="MusicButton" type="TextureButton" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 1350.0
+offset_top = 14.0
+offset_right = 1582.0
+offset_bottom = 246.0
+scale = Vector2(0.307623, 0.307623)
+toggle_mode = true
+texture_normal = ExtResource("15_usd2s")
+texture_disabled = ExtResource("16_ht161")
+script = ExtResource("17_rlxx0")
+
+[node name="GameSoundsButton" type="TextureButton" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 1475.0
+offset_top = 13.0
+offset_right = 1707.0
+offset_bottom = 245.0
+scale = Vector2(0.307623, 0.307623)
+toggle_mode = true
+texture_normal = ExtResource("17_i85jm")
+texture_disabled = ExtResource("19_yer6w")
+script = ExtResource("18_oe55w")
 
 [node name="WaveLabel" type="Label" parent="CanvasLayer/UI"]
 layout_mode = 1
@@ -282,7 +312,10 @@ script = ExtResource("17_j4f6q")
 stream = ExtResource("15_byyuv")
 volume_db = -14.512
 autoplay = true
+bus = &"Music"
 
+[connection signal="toggled" from="CanvasLayer/UI/MusicButton" to="CanvasLayer/UI/MusicButton" method="_on_toggled"]
+[connection signal="toggled" from="CanvasLayer/UI/GameSoundsButton" to="CanvasLayer/UI/GameSoundsButton" method="_on_toggled"]
 [connection signal="timeout" from="CanvasLayer/UI/DebugWindow/RefreshRate" to="CanvasLayer/UI/DebugWindow" method="RefreshInfo"]
 [connection signal="pressed" from="CanvasLayer/UI/GameOverScreen/Submit" to="PlayerManager" method="_upload_score"]
 [connection signal="pressed" from="CanvasLayer/UI/GameOverScreen/Button" to="CanvasLayer/UI/GameOverScreen" method="Retry"]
