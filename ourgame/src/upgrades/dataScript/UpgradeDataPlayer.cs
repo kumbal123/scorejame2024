@@ -21,6 +21,7 @@ public partial class UpgradeDataPlayer : UpgradeData
         Size = 1.0f;
         Speed = 10.0f;
         MaxHp = 50;
+        Cost = 500;
     }
 
     protected override UpgradeNode GetUpgradeNode => 
@@ -34,6 +35,7 @@ public partial class UpgradeDataPlayer : UpgradeData
         Attack += 1;
         Speed += 5.0f;
         MaxHp += 10;
+        Cost += (int)Cost/2;
     }
 
     public override string LevelUpInfo()

@@ -40,17 +40,6 @@ theme_override_font_sizes/font_size = 60
 text = "Quit
 "
 
-[node name="ViewLeaderboard" type="Button" parent="."]
-layout_mode = 0
-offset_left = 196.0
-offset_top = 720.0
-offset_right = 467.0
-offset_bottom = 788.0
-theme_override_fonts/font = ExtResource("3_41dlv")
-theme_override_font_sizes/font_size = 60
-text = "Leaderboard
-"
-
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 46.0
@@ -72,4 +61,3 @@ autoplay = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="ViewLeaderboard" to="." method="_on_start_button_pressed"]

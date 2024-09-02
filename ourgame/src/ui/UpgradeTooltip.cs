@@ -16,6 +16,7 @@ public partial class UpgradeTooltip : TextureRect
 		GetNode<Label>("Title").Text = upgrade.Title;
 		GetNode<TextureRect>("Icon").Texture = upgrade.GetIcon;
 		GetNode<Label>("LevelIndicator").Text = $"Level {upgrade.Level} -> {upgrade.Level + 1}";
+		GetNode<Label>("Cost").Text = $"Cost {upgrade.Cost}";
 		GetNode<Label>("Description").Text = upgrade.LevelUpInfo();
 	}
 

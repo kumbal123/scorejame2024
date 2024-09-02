@@ -2,8 +2,7 @@ extends Node
 
 # Use this game API key if you want to test with a functioning leaderboard
 # "987dbd0b9e5eb3749072acc47a210996eea9feb0"
-var game_API_key = "dev_2d6de82cb1b44bf9af30c804573f0317"
-var development_mode = true
+var game_API_key = "prod_cb479475acd14154b1f1139dec44f5f9"
 var leaderboard_key = "leaderboardKey"
 var session_token = ""
 var score
@@ -17,10 +16,14 @@ var set_name_http = HTTPRequest.new()
 var get_name_http = HTTPRequest.new()
 
 var button
+var RankScene
+var ranks
 
 func _ready():
 	button = get_tree().root.get_child(1).get_node("CanvasLayer").get_node("UI").get_node("GameOverScreen").get_node("NameField")
 	score = get_tree().root.get_child(1).get_node("CanvasLayer").get_node("UI").get_node("GameOverScreen").get_node("Score")
+	RankScene = preload("res://objects/ui/Rank.tscn")
+	ranks = get_tree().root.get_child(1).get_node("CanvasLayer").get_node("UI").get_node("GameOverScreen").get_node("Ranks")
 	_authentication_request()
 
 func _process(_delta):
@@ -76,12 +79,12 @@ func _on_authentication_request_completed(result, response_code, headers, body):
 	
 	# Print server response
 	print(json.get_data())
-
-	button.text = "Player-" + str(json.get_data()["player_id"])
+	
 	# Clear node
 	auth_http.queue_free()
 	# Get leaderboards
 	_get_leaderboards()
+	_get_player_name()
 
 
 func _get_leaderboards():
@@ -101,15 +104,31 @@ func _on_leaderboard_request_completed(result, response_code, headers, body):
 	var json = JSON.new()
 	json.parse(body.get_string_from_utf8())
 	
+	for child in ranks.get_children():
+		child.queue_free()
+	
 	# Formatting as a leaderboard
 	var leaderboardFormatted = ""
+	var i = 0
+	
 	if json.get_data().items:
 		for n in json.get_data().items.size():
-			leaderboardFormatted += str(json.get_data().items[n].rank)+str(". ")
-			leaderboardFormatted += str(json.get_data().items[n].player.id)+str(" - ")
-			leaderboardFormatted += str(json.get_data().items[n].score)+str("\n")
-		# Print the formatted leaderboard to the console
-		print(leaderboardFormatted)
+			var rank_instance = RankScene.instantiate()
+			var rank = str(json.get_data().items[n].rank)+str(". ")
+			var player = str(json.get_data().items[n].player.name)
+			var score = str(json.get_data().items[n].score)+str("\n")
+
+			rank_instance.get_child(0).text = rank
+			rank_instance.get_child(1).text = player
+			rank_instance.get_child(2).text = score
+			leaderboardFormatted += rank
+			leaderboardFormatted += player
+			leaderboardFormatted += score
+			
+			rank_instance.position = Vector2(80, i * 50)
+			
+			ranks.add_child(rank_instance)
+			i += 1
 	
 	# Clear node
 	leaderboard_http.queue_free()
@@ -138,6 +157,7 @@ func _on_upload_score_request_completed(result, response_code, headers, body) :
 	
 	# Clear node
 	submit_score_http.queue_free()
+	_get_leaderboards()
 
 
 func _change_player_name():
@@ -187,3 +207,4 @@ func _on_player_get_name_request_completed(result, response_code, headers, body)
 	print(json.get_data())
 	# Print player name
 	print(json.get_data().name)
+	button.text = json.get_data().name

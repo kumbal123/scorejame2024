@@ -40,6 +40,7 @@ public partial class PlayerCharacter : CharacterBody2D
 	private AnimatedSprite2D AnimSprite { get; set; }
 	private SoundPool _attackSound;
 	private SoundPool _damageSound;
+	public int IceShoes = 10;
 
     public override void _EnterTree()
     {

@@ -14,7 +14,7 @@ public partial class EnemyManager : Node
 	public Dictionary<string, int> EnemyPool { get; set; } = new()
 	{
 		{"res://objects/enemies/basic/ArcherEnemy.tscn", 0},  // Archers start at 0
-		{"res://objects/enemies/basic/OrcEnemy.tscn", 2}
+		{"res://objects/enemies/basic/OrcEnemy.tscn", 40}
 	};
 
 	/// <summary>
@@ -56,37 +56,29 @@ public partial class EnemyManager : Node
 	/// Spawns a supplied enemy tscn at a random location on the map.
 	/// </summary>
 	private void SpawnAtRandomLocation(String enemyPath)
-	{
-		EnemyBase enemy = GD.Load<PackedScene>(enemyPath).Instantiate<EnemyBase>();
-		enemy.difficultyScale(waveCount);
-		int selectedNumber = random.Next(1, 5);
-		int x = 0;
-		int y = 0;
-		switch (selectedNumber)
-		{
-			case 1:
-				x = random.Next((int)Player.Position.X - 1000, (int)Player.Position.X + 1000);
-				y = (int)Player.Position.Y + 650;
-				break;
-			case 2:
-				y = random.Next((int)Player.Position.Y - 650, (int)Player.Position.Y + 650);
-				x = (int)Player.Position.X + 1000;
-				break;
-			case 3:
-				x = random.Next((int)Player.Position.X - 1000, (int)Player.Position.X + 1000);
-				y = (int)Player.Position.Y - 650;
-				break;
-			case 4:
-				y = random.Next((int)Player.Position.Y - 650, (int)Player.Position.Y + 650);
-				x = (int)Player.Position.X - 1000;
-				break;
-			default:
-				break;
-		}
-		// 1=top, 2=right, 3=bottom, 4=left
-		enemy.Position = new Vector2(x, y);
-		AddChild(enemy);
-	}
+{
+    // Load and instantiate the enemy scene
+    EnemyBase enemy = GD.Load<PackedScene>(enemyPath).Instantiate<EnemyBase>();
+
+    // Scale the difficulty of the enemy based on the current wave
+    enemy.difficultyScale(waveCount);
+
+    // Define the bounds for the spawning area
+    int minX = -1000;
+    int maxX = 1600;
+    int minY = -300;
+    int maxY = 1000;
+
+    // Generate random coordinates within the specified bounds
+    int x = random.Next(minX, maxX);
+    int y = random.Next(minY, maxY);
+
+    // Set the enemy's position to the random coordinates
+    enemy.Position = new Vector2(x, y);
+
+    // Add the enemy to the scene
+    AddChild(enemy);
+}
 
 	/// <summary>
 	/// Updates spawn pool after every tick, so that enemy numbers grow and escalate.
@@ -102,7 +94,7 @@ public partial class EnemyManager : Node
 		}
 		if (waveCount >= 3)
 		{
-			EnemyPool["res://objects/enemies/basic/ArcherEnemy.tscn"] = Math.Max(EnemyPool["res://objects/enemies/basic/ArcherEnemy.tscn"], 1);
+			EnemyPool["res://objects/enemies/basic/ArcherEnemy.tscn"] = Math.Max(EnemyPool["res://objects/enemies/basic/ArcherEnemy.tscn"], 5);
 		}
 	}
 }

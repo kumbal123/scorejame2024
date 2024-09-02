@@ -15,6 +15,7 @@ public partial class UpgradeDataGarlic : UpgradeData
         Attack = 10;
         Size = 1.0f;
         Speed = 1.0f;
+        Cost = 500;
     }
 
     protected override UpgradeNode GetUpgradeNode =>
@@ -25,6 +26,7 @@ public partial class UpgradeDataGarlic : UpgradeData
         Attack += 3;
         Size += 0.25f;
         Speed += 0.1f;
+        Cost += (int)Cost/2;
     }
 
     public override string LevelUpInfo()

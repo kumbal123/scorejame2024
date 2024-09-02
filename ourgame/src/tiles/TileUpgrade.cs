@@ -13,10 +13,12 @@ public partial class TileUpgrade : TileBase
 	public UpgradeData upgrade;
 	private UpgradeTooltip tooltip;
 	private Sprite2D sprite2D;
+	private Stopwatch stopwatch;
 
     public override void _Ready()
     {
         SetProcessUnhandledKeyInput(false);
+		stopwatch = Stopwatch.Instance;
     }
 
 	/// <summary>
@@ -24,7 +26,8 @@ public partial class TileUpgrade : TileBase
 	/// </summary>
 	public override void _UnhandledKeyInput(InputEvent @event)
     {
-        if (@event.IsActionReleased("ui_aux_confirm")) {
+        if (@event.IsActionReleased("ui_aux_confirm") && stopwatch.GetScore() >= upgrade.Cost) {
+			stopwatch.ReduceScore(upgrade.Cost);
 			upgrade.LevelUp();
 			tooltip.BuyUpgrade(upgrade);
 		}

@@ -10,6 +10,7 @@ using System.Runtime.ExceptionServices;
 public abstract partial class UpgradeData : Resource
 {
 	public int Level { get; private set; } = 0;
+	public double Cost { get; protected set; } = 100;
 	public int Attack { get; protected set; } = 20;
 	public float Size { get; protected set; } = 1.0f;
 	public float Speed { get; protected set; } = 1.0f;

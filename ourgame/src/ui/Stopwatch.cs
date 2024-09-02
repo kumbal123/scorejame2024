@@ -4,8 +4,15 @@ using System;
 public partial class Stopwatch : CanvasLayer
 {
     private double time = 0.0f;
-    private int score = 0;
+    private double score = 0;
     private double timePassed = 0;
+
+    public static Stopwatch Instance { get; private set; } = null;
+
+    public override void _EnterTree()
+    {
+        Instance = this;
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -55,10 +62,12 @@ public partial class Stopwatch : CanvasLayer
         score += value;
         GetNode<Label>("ScoreLabel").Text = "Score: " + score.ToString();
     }
-	public int CheckScore(){
+
+	public double GetScore(){
 		return score;
 	}
-	public void UpgradeCost(int cost){
+
+	public void ReduceScore(double cost){
 		score -= cost; 
 	}
 }
