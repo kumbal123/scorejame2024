@@ -14,10 +14,13 @@ public partial class Arrow : RigidBody2D
     private bool damaged = false;
 
     public override void _Ready()
-    {
-        // Cache the reference to the AudioStreamPlayer node
-        _arrowSound = GetNode<AudioStreamPlayer>("ArrowHit");
-    }
+{
+    // Cache the reference to the AudioStreamPlayer node
+    _arrowSound = GetNode<AudioStreamPlayer>("ArrowHit");
+
+    // Connect the body_entered signal to the method
+    Connect("body_entered", new Callable(this, nameof(OnBodyEntered)));
+}
     public void setDamage(int dmg){
         Damage = dmg;
     }
@@ -46,22 +49,22 @@ public partial class Arrow : RigidBody2D
         }
     }
 
-    private void BodyEntered(Node2D body)
+    private void OnBodyEntered(Node2D body)
+{
+    if (body.IsInGroup("player"))
     {
-        if (body.IsInGroup("player"))
+        if (!damaged)
         {
-            if (!damaged)
-            {
-                // Damage the player once
-                PlayerCharacter player = (PlayerCharacter)body;
-                player.TakeDamage(Damage);
-                damaged = true;
+            // Damage the player once
+            PlayerCharacter player = (PlayerCharacter)body;
+            player.TakeDamage(Damage);
+            damaged = true;
 
-                // Play the hit sound
-                _arrowSound.Play();
-            }
+            // Play the hit sound
+            _arrowSound.Play();
         }
     }
+}
 
     private void OnTimeToDie()
     {

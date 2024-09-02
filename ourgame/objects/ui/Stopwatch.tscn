@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c53v155fkryhp"]
+[gd_scene load_steps=3 format=3 uid="uid://bj7i4pr73ntov"]
 
-[ext_resource type="Script" path="res://src/ui/stopwatch.gd" id="1_k4hh4"]
+[ext_resource type="Script" path="res://src/ui/Stopwatch.cs" id="1_41c1h"]
 [ext_resource type="Theme" uid="uid://cnnej4s13nr1s" path="res://main_theme.tres" id="2_m0wu8"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-script = ExtResource("1_k4hh4")
+script = ExtResource("1_41c1h")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 5

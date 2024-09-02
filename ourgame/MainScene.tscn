@@ -19,7 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://3svc8jkvei2p" path="res://audio/Glorious Morning.mp3" id="15_byyuv"]
 [ext_resource type="Texture2D" uid="uid://1ce024kutmjs" path="res://asssets/music_unmuted.png" id="15_usd2s"]
 [ext_resource type="Texture2D" uid="uid://45obf71ihv0e" path="res://asssets/music_muted.png" id="16_ht161"]
-[ext_resource type="PackedScene" path="res://objects/ui/Stopwatch.tscn" id="16_ngyis"]
+[ext_resource type="PackedScene" uid="uid://bj7i4pr73ntov" path="res://objects/ui/Stopwatch.tscn" id="16_ngyis"]
 [ext_resource type="Texture2D" uid="uid://biixuspsrpgt3" path="res://asssets/game_unmuted.png" id="17_i85jm"]
 [ext_resource type="Script" path="res://src/ui/PlayerManager.gd" id="17_j4f6q"]
 [ext_resource type="Script" path="res://src/audio/MusicButton.cs" id="17_rlxx0"]
@@ -513,7 +513,6 @@ use_texture_padding = false
 5:15/0 = 0
 6:15/0 = 0
 7:15/0 = 0
-7:4/size_in_atlas = Vector2i(3, 1)
 7:4/0 = 0
 7:5/0 = 0
 8:5/0 = 0
@@ -1963,11 +1962,11 @@ texture_region_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_nw18p")
 
-[sub_resource type="Resource" id="Resource_pa6r4"]
+[sub_resource type="Resource" id="Resource_575a5"]
 resource_local_to_scene = true
 script = ExtResource("6_fthll")
 
-[sub_resource type="Resource" id="Resource_mebvw"]
+[sub_resource type="Resource" id="Resource_ccso0"]
 resource_local_to_scene = true
 script = ExtResource("7_f5654")
 
@@ -2069,7 +2068,6 @@ collision_visibility_mode = 1
 
 [node name="DecorationLayer" type="TileMapLayer" parent="Node2D"]
 modulate = Color(0.74978, 0.74978, 0.74978, 1)
-scale = Vector2(1, 1)
 tile_map_data = PackedByteArray("AAD4/wwAAgABAAEAABD5/wwAAgABAAEAABD6//r/AgABAAEAABAEAA0AAgABAAEAABAIAA4AAgABAAEAABAMAP//AgABAAEAABAOAA8AAgABAAEAABAPAAcAAgABAAEAABARAP//AgABAAEAABABAP//AgABAAEAAAACAPz/AgABAAEAAAAQAA4AAgABAAEAAAAYAAQAAgABAAEAAAAaAP//AgABAAEAAAA=")
 tile_set = ExtResource("5_3idep")
 
@@ -2088,12 +2086,12 @@ script = ExtResource("3_w137l")
 
 [node name="Tiles#Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
 position = Vector2(29, 353)
-upgrade = SubResource("Resource_pa6r4")
+upgrade = SubResource("Resource_575a5")
 
 [node name="Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
 position = Vector2(550, 250)
 texture = ExtResource("9_f7xis")
-upgrade = SubResource("Resource_mebvw")
+upgrade = SubResource("Resource_ccso0")
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_tuci1")]
 InitialSpawnInterval = 10.0
