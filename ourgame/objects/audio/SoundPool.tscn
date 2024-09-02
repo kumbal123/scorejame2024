@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dmt2o1ke2e6mf"]
 
-[ext_resource type="Script" path="res://objects/audio/SoundPool.cs" id="1_xwnv1"]
+[ext_resource type="Script" path="res://src/audio/SoundPool.cs" id="1_xwnv1"]
 
 [node name="SoundPool" type="Node"]
 script = ExtResource("1_xwnv1")

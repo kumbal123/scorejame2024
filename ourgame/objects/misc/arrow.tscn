@@ -5,16 +5,16 @@
 [ext_resource type="AudioStream" uid="uid://ck213uwlljvfm" path="res://audio/arrowHitGround.wav" id="3_uqilt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6morp"]
-size = Vector2(64, 8)
+size = Vector2(63, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cldn0"]
-size = Vector2(64, 8)
+size = Vector2(9, 6)
 
 [node name="RigidBody2D" type="RigidBody2D"]
 script = ExtResource("1_2o0gs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
+position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_6morp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -24,11 +24,13 @@ texture = ExtResource("2_fywgd")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, 0)
+visible = false
+position = Vector2(26.5, 0)
 shape = SubResource("RectangleShape2D_cldn0")
 
 [node name="ArrowHit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_uqilt")
+volume_db = -14.512
 pitch_scale = 1.51
 
 [connection signal="body_entered" from="Area2D" to="." method="BodyEntered"]

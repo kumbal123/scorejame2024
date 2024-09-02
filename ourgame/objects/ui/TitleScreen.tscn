@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://b53ope8bwgysv"]
+
+[ext_resource type="Script" path="res://src/ui/TitleScreen.cs" id="1_lcv77"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lcv77")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 722.0
+offset_top = 715.0
+offset_right = 834.0
+offset_bottom = 761.0
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1028.0
+offset_top = 713.0
+offset_right = 1140.0
+offset_bottom = 759.0
+text = "Quit
+"
+
+[node name="ViewLeaderboard" type="Button" parent="."]
+layout_mode = 0
+offset_left = 433.0
+offset_top = 717.0
+offset_right = 545.0
+offset_bottom = 763.0
+text = "Leaderboard
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 101.0
+offset_right = 827.0
+offset_bottom = 268.0
+text = "Your goal is to survive as long as possible while fighting a neverending horde of enemies. As the arena slowly fills with lava you will have to make sacrifices before your time runs out.
+
+Move - WSAD or arrows
+Interact - R
+Slash - Spacebar"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="ViewLeaderboard" to="." method="_on_start_button_pressed"]

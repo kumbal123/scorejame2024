@@ -19,11 +19,11 @@
 [ext_resource type="PackedScene" path="res://objects/ui/Stopwatch.tscn" id="16_ngyis"]
 [ext_resource type="Script" path="res://src/ui/PlayerManager.gd" id="17_j4f6q"]
 
-[sub_resource type="Resource" id="Resource_f11qw"]
+[sub_resource type="Resource" id="Resource_a74u4"]
 resource_local_to_scene = true
 script = ExtResource("6_fthll")
 
-[sub_resource type="Resource" id="Resource_q5vm8"]
+[sub_resource type="Resource" id="Resource_7hnrg"]
 resource_local_to_scene = true
 script = ExtResource("7_f5654")
 
@@ -130,12 +130,12 @@ script = ExtResource("3_w137l")
 
 [node name="Tiles#Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
 position = Vector2(29, 353)
-upgrade = SubResource("Resource_f11qw")
+upgrade = SubResource("Resource_a74u4")
 
 [node name="Tile" parent="Tiles" instance=ExtResource("4_c7b2p")]
 position = Vector2(550, 250)
 texture = ExtResource("9_f7xis")
-upgrade = SubResource("Resource_q5vm8")
+upgrade = SubResource("Resource_7hnrg")
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_tuci1")]
 InitialSpawnInterval = 10.0
