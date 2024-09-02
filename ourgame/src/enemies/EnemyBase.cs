@@ -146,4 +146,10 @@ public partial class EnemyBase : CharacterBody2D
 	{
 		ProcessMode = ProcessModeEnum.Disabled;
 	}
+	public void difficultyScale(int modifier){
+		Health = Health + modifier*5;
+		Defense = Defense + modifier;
+		Speed = Speed + 10;
+		Attack = Attack + modifier;
+	}
 }

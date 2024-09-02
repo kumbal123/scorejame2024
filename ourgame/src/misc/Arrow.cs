@@ -6,7 +6,7 @@ public partial class Arrow : RigidBody2D
     public float MaxDistance = 600;
     public float Impulse = 800;
     public float Life = 1;
-    public int Damage = 10; // Define the damage value
+    public int Damage; // Define the damage value
 
     private Timer timer;
     private Vector2 originalPosition;
@@ -17,6 +17,9 @@ public partial class Arrow : RigidBody2D
     {
         // Cache the reference to the AudioStreamPlayer node
         _arrowSound = GetNode<AudioStreamPlayer>("ArrowHit");
+    }
+    public void setDamage(int dmg){
+        Damage = dmg;
     }
 
     public void LaunchArrow(Vector2 direction)

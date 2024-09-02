@@ -66,18 +66,11 @@ public partial class ArcherEnemy : EnemyBase
 			GD.PrintErr("ArrowScene is not assigned!");
 			return;
 		}
-
-		// Instance the arrow
 		Arrow arrowInstance = (Arrow)arrowScene.Instantiate();
+		arrowInstance.setDamage(Attack);
 		AddChild(arrowInstance);
-
-		// Position the arrow at the enemy's position
 		arrowInstance.GlobalPosition = GlobalPosition;
-
-		// Calculate the direction towards the player
 		Vector2 direction = (Player.GlobalPosition - GlobalPosition).Normalized();
-
-		// Launch the arrow in the direction of the player
 		arrowInstance.LaunchArrow(direction);
 	}
 

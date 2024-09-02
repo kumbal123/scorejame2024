@@ -13,7 +13,8 @@ public partial class EnemyManager : Node
 	/// </summary>
 	public Dictionary<string, int> EnemyPool { get; set; } = new()
 	{
-		{"res://objects/enemies/basic/ArcherEnemy.tscn", 2},{"res://objects/enemies/basic/OrcEnemy.tscn", 2}
+		{"res://objects/enemies/basic/ArcherEnemy.tscn", 0},  // Archers start at 0
+		{"res://objects/enemies/basic/OrcEnemy.tscn", 2}
 	};
 
 	/// <summary>
@@ -25,33 +26,39 @@ public partial class EnemyManager : Node
 	private Timer timer;
 	private CharacterBody2D Player;
 	private Random random;
+	private int waveCount = 0;  // Tracks the number of waves that have spawned
+
 	public override void _Ready()
 	{
 		random = new Random();
 		Player = PlayerCharacter.Instance;
 		timer = GetNode<Timer>("Timer");
-		timer.WaitTime = InitialSpawnInterval;//SpawnInterval = InitialSpawnInterval;
+		timer.WaitTime = InitialSpawnInterval;
+		timer.Connect("timeout", new Callable(this, nameof(SpawnTick)));
+		timer.Start();
 	}
 
 	public void SpawnTick()
 	{
+		waveCount++;  // Increment the wave count each time enemies spawn
+
 		foreach (KeyValuePair<string, int> spawnEntry in EnemyPool)
 		{
-			for (int i=0; i<spawnEntry.Value; i++)
+			for (int i = 0; i < spawnEntry.Value; i++)
 			{
 				SpawnAtRandomLocation(spawnEntry.Key);
 			}
 		}
-		UpdateEnemyPool();
+		UpdateEnemyPool();  // Update the pool after spawning enemies
 	}
 
 	/// <summary>
 	/// Spawns a supplied enemy tscn at a random location on the map.
 	/// </summary>
-	/// <param name="enemyTscn"></param>awnAtRandomLocation(String enemyPath)
-private void SpawnAtRandomLocation(String enemyPath)
-{
-	EnemyBase enemy = GD.Load<PackedScene>(enemyPath).Instantiate<EnemyBase>();
+	private void SpawnAtRandomLocation(String enemyPath)
+	{
+		EnemyBase enemy = GD.Load<PackedScene>(enemyPath).Instantiate<EnemyBase>();
+		enemy.difficultyScale(waveCount);
 		int selectedNumber = random.Next(1, 5);
 		int x = 0;
 		int y = 0;
@@ -76,18 +83,26 @@ private void SpawnAtRandomLocation(String enemyPath)
 			default:
 				break;
 		}
-		// 1=top, 2=right, 3=bot, 4=left
+		// 1=top, 2=right, 3=bottom, 4=left
 		enemy.Position = new Vector2(x, y);
 		AddChild(enemy);
-}
+	}
 
-	
 	/// <summary>
 	/// Updates spawn pool after every tick, so that enemy numbers grow and escalate.
 	/// </summary>
 	private void UpdateEnemyPool()
 	{
-		// TODO
+		if (waveCount % 3 == 0)
+		{
+			foreach (var enemyType in EnemyPool.Keys)
+			{
+				EnemyPool[enemyType]++;
+			}
+		}
+		if (waveCount >= 3)
+		{
+			EnemyPool["res://objects/enemies/basic/ArcherEnemy.tscn"] = Math.Max(EnemyPool["res://objects/enemies/basic/ArcherEnemy.tscn"], 1);
+		}
 	}
-	
 }
